@@ -1,0 +1,21 @@
+DROP DATABASE IF EXISTS oopDB;
+CREATE DATABASE oopDB;
+
+USE oopDB;
+DROP TABLE IF EXISTS admin, vehicles;
+
+CREATE TABLE admin(
+adminId INT NOT NULL AUTO_INCREMENT,
+adminEmail VARCHAR(50) NOT NULL,
+adminPassword VARCHAR(50) NOT NULL ,
+PRIMARY KEY(adminId));
+
+CREATE TABLE vehicles(
+vehicleId INT NOT NULL AUTO_INCREMENT,
+make VARCHAR(50) NOT NULL,
+model VARCHAR(50) NOT NULL,
+colour VARCHAR(50),
+registration VARCHAR(50) NOT NULL ,
+numPassengers INT,
+engineCapacity DOUBLE,
+PRIMARY KEY(vehicleId));
