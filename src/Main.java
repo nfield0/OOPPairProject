@@ -7,7 +7,8 @@ public class Main {
         Boat b1 = new Boat("Douro","Tawny","Red","0012pt",15,1.5,2);
         Plane p1 = new Plane("Boeing","747","White","jdal12",200,3,4);
 
-        Admin u1 = new Admin("John","john@gmail.com","Chicken12");
+        User u1 = new User(0,"Nathan","nathan@gmail.com","Password1",0);
+        User u2 = new User(1,"Arthur","arthur@gmail.com","Password2",1);
 
 
 

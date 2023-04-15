@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `JavaISP`
 --
+DROP DATABASE IF EXISTS JavaISP;
+CREATE DATABASE JavaISP CHARACTER SET utf8mb4;
+USE JavaISP;
 
 -- --------------------------------------------------------
 
@@ -38,7 +41,7 @@ CREATE TABLE `boats` (
   `number_passengers` int DEFAULT NULL,
   `stock` int NOT NULL,
   `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -59,7 +62,7 @@ CREATE TABLE `cars` (
   `price` int NOT NULL,
   `wheels` int DEFAULT NULL,
   `number_doors` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -78,7 +81,7 @@ CREATE TABLE `planes` (
   `number_passengers` int DEFAULT NULL,
   `stock` int NOT NULL,
   `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,7 @@ CREATE TABLE `rental` (
   `start_date` date NOT NULL,
   `duration` int NOT NULL,
   `rental_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -112,7 +115,7 @@ CREATE TABLE `trucks` (
   `number_passengers` int DEFAULT NULL,
   `stock` int NOT NULL,
   `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -127,7 +130,7 @@ CREATE TABLE `users` (
   `password` text NOT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `account_creation` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,7 @@ CREATE TABLE `vehicles` (
   `number_passengers` int DEFAULT NULL,
   `stock` int NOT NULL,
   `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Index pour les tables déchargées
