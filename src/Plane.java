@@ -4,4 +4,19 @@ public class Plane extends Vehicle {
         super(make, model, colour, registration, numPassengers, engineCapacity);
         this.numEngines = numEngines;
     }
+
+    public int getNumEngines() {
+        return numEngines;
+    }
+
+    public void setNumEngines(int numEngines) {
+        this.numEngines = numEngines;
+    }
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "numEngines=" + numEngines +
+                '}' + super.toString();
+    }
 }

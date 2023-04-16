@@ -52,4 +52,15 @@ public class User {
     public void setAdmin(int admin) {
         this.admin = admin;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", admin=" + admin +
+                '}';
+    }
 }
