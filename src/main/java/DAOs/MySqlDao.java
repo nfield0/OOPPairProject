@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class MySqlDao  {
     public Connection getConnection() throws DaoException{
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/badminton";
+        String url = "jdbc:mysql://localhost:3306/javaisp";
         String username = "root";
         String password = "";
         Connection connection = null;

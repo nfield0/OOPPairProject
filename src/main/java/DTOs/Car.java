@@ -30,7 +30,7 @@ private int numDoors;
 
     @Override
     public String toString() {
-        return "DTOs.Car{" +
+        return "Car{" +
                 "wheels=" + wheels +
                 ", numDoors=" + numDoors +
                 '}' + super.toString();

@@ -343,7 +343,6 @@ CREATE TABLE `users` (
   `email` text NOT NULL,
   `password` text NOT NULL,
   `admin` tinyint(1) DEFAULT NULL,
-  `account_creation` date NOT NULL,
   PRIMARY KEY (id)
   );
 

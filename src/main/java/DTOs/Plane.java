@@ -17,7 +17,7 @@ public class Plane extends Vehicle {
 
     @Override
     public String toString() {
-        return "DTOs.Plane{" +
+        return "Plane{" +
                 "numEngines=" + numEngines +
                 '}' + super.toString();
     }

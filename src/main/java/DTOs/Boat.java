@@ -17,7 +17,7 @@ public class Boat extends Vehicle {
 
     @Override
     public String toString() {
-        return "DTOs.Boat{" +
+        return "Boat{" +
                 "numSails=" + numSails +
                 '}' + super.toString();
     }

@@ -1,16 +1,20 @@
-import DTOs.Boat;
-import DTOs.Car;
-import DTOs.Plane;
-import DTOs.User;
+import DAOs.MySqlDao;
+import DAOs.MySqlUserDao;
+import DTOs.*;
+import Exceptions.DaoException;
+
+import java.sql.SQLException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         System.out.println("Running");
 
 
         Car c1 = new Car("Mazda","Miata","Red","0023lm",5,1.5,4,3);
         Boat b1 = new Boat("Douro","Tawny","Red","0012pt",15,1.5,2);
         Plane p1 = new Plane("Boeing","747","White","jdal12",200,3,4);
+        Truck t1 = new Truck("Scania","","White","j2",2,5,400);
+
 
         User u1 = new User(0,"Nathan","nathan@gmail.com","Password1",0);
         User u2 = new User(1,"Arthur","arthur@gmail.com","Password2",1);
@@ -20,10 +24,20 @@ public class Main {
         System.out.println(c1);
         System.out.println(b1);
         System.out.println(p1);
+        System.out.println(t1);
+
 
         System.out.println("Users");
         System.out.println(u1);
         System.out.println(u2);
+
+        MySqlDao mySqlDao = new MySqlDao();
+        mySqlDao.getConnection();
+
+        MySqlUserDao mySqlUserDao = new MySqlUserDao();
+        mySqlUserDao.insertUser(0,"John","john@gmail.com","Password1",0);
+
+
 
 
 
