@@ -1,3 +1,5 @@
+package DTOs;
+
 public abstract class Vehicle {
     private int id;
     private static int nextId = 100;

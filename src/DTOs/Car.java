@@ -1,4 +1,4 @@
-
+package DTOs;
 
 public class Car extends Vehicle {
 
@@ -30,7 +30,7 @@ private int numDoors;
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "DTOs.Car{" +
                 "wheels=" + wheels +
                 ", numDoors=" + numDoors +
                 '}' + super.toString();

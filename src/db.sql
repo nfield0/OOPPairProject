@@ -247,3 +247,127 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+
+
+
+
+
+
+-- DB Redone
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `JavaISP`
+--
+DROP DATABASE IF EXISTS JavaISP;
+CREATE DATABASE JavaISP CHARACTER SET utf8mb4;
+USE JavaISP;
+
+CREATE TABLE `dealers` (
+  `id` int NOT NULL,
+  `type` varchar(20),
+  `address` varchar(20),
+  PRIMARY KEY (id)
+);
+CREATE TABLE `vehicles` (
+  `id` int NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `make` varchar(20) NOT NULL,
+  `model` varchar(20) NOT NULL,
+  `engine` varchar(20) NOT NULL,
+  `registration` varchar(20) NOT NULL,
+  `color` varchar(20),
+  `weight_tonnes` INT NOT NULL,
+  `number_passengers` int DEFAULT NULL,
+  `stock` int NOT NULL,
+  `mileage` int NOT NULL,
+  `price` int NOT NULL,
+  `fuel_type` varchar(20),
+  `dealer_id` INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (dealer_id) REFERENCES dealers(id)
+);
+
+CREATE TABLE `airplanes` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `vehicle_id` INT NOT NULL,
+    `model_number` VARCHAR(50) NOT NULL,
+    `engine_count` VARCHAR(50) NOT NULL,
+    `range` INT NOT NULL,
+    `max_speed_kmh` int NOT NULL,
+    `seating_capacity` INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+);
+
+CREATE TABLE `cars` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `vehicle_id` INT NOT NULL,
+    `number_doors` INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+);
+CREATE TABLE `boats` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `vehicle_id` INT NOT NULL,
+    `number_lifeboats` INT NOT NULL,
+    `max_speed_knots` INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+);
+CREATE TABLE `trucks` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `vehicle_id` INT NOT NULL,
+    `weight_limit` INT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+);
+
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `admin` tinyint(1) DEFAULT NULL,
+  `account_creation` date NOT NULL,
+  PRIMARY KEY (id)
+  );
+
+CREATE TABLE `rental` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `vehicle_id` int NOT NULL,
+  `start_date` date NOT NULL,
+  `duration_days` int NOT NULL,
+  `rental_date` date NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+  );
+
+
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+-- insert sample data
+
+

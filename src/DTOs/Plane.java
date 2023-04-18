@@ -1,3 +1,5 @@
+package DTOs;
+
 public class Plane extends Vehicle {
     private int numEngines;
     public Plane(String make, String model, String colour, String registration, int numPassengers, double engineCapacity, int numEngines) {
@@ -15,7 +17,7 @@ public class Plane extends Vehicle {
 
     @Override
     public String toString() {
-        return "Plane{" +
+        return "DTOs.Plane{" +
                 "numEngines=" + numEngines +
                 '}' + super.toString();
     }

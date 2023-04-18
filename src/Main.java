@@ -1,3 +1,8 @@
+import DTOs.Boat;
+import DTOs.Car;
+import DTOs.Plane;
+import DTOs.User;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Running");
