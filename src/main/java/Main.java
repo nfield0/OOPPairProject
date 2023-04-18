@@ -9,11 +9,9 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         System.out.println("Running");
 
+        Dealer dealer = new Dealer(0,"Mercedes Porto","Porto","083123123");
+        Car c1 = new Car(0,"Mazda","Miata","2.1L","0023lm","Red",5,5,4000,3000,"Diesel",dealer,5);
 
-        Car c1 = new Car("Mazda","Miata","Red","0023lm",5,1.5,4,3);
-        Boat b1 = new Boat("Douro","Tawny","Red","0012pt",15,1.5,2);
-        Plane p1 = new Plane("Boeing","747","White","jdal12",200,3,4);
-        Truck t1 = new Truck("Scania","","White","j2",2,5,400);
 
 
         User u1 = new User(0,"Nathan","nathan@gmail.com","Password1",0);
@@ -22,9 +20,7 @@ public class Main {
         System.out.println("Vehicles");
 
         System.out.println(c1);
-        System.out.println(b1);
-        System.out.println(p1);
-        System.out.println(t1);
+
 
 
         System.out.println("Users");

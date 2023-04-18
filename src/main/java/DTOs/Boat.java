@@ -2,8 +2,9 @@ package DTOs;
 
 public class Boat extends Vehicle {
     private int numSails;
-    public Boat(String make, String model, String colour, String registration, int numPassengers, double engineCapacity, int numSails) {
-        super(make, model, colour, registration, numPassengers, engineCapacity);
+
+    public Boat(int id, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, int numSails) {
+        super(id, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer);
         this.numSails = numSails;
     }
 

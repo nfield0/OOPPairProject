@@ -1,23 +1,12 @@
 package DTOs;
 
 public class Car extends Vehicle {
-
-private int wheels;
 private int numDoors;
 
 
-    public Car(String make, String model, String colour, String registration, int numPassengers, double engineCapacity, int wheels, int numDoors) {
-        super(make, model, colour, registration, numPassengers, engineCapacity);
-        this.wheels = wheels;
+    public Car(int id, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, int numDoors) {
+        super(id, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer);
         this.numDoors = numDoors;
-    }
-
-    public int getWheels() {
-        return wheels;
-    }
-
-    public void setWheels(int wheels) {
-        this.wheels = wheels;
     }
 
     public int getNumDoors() {
@@ -31,7 +20,6 @@ private int numDoors;
     @Override
     public String toString() {
         return "Car{" +
-                "wheels=" + wheels +
                 ", numDoors=" + numDoors +
                 '}' + super.toString();
     }

@@ -1,23 +1,91 @@
 package DTOs;
 
+import java.util.List;
+
 public abstract class Vehicle {
     private int id;
-    private static int nextId = 100;
     private String make;
     private String model;
-    private String colour;
+    private String engine;
     private String registration;
+    private String color;
+    private int weightInTonnes;
     private int numPassengers;
-    private double engineCapacity;
+    private int mileage;
+    private int price;
+    private String fuelType;
+    // composition (has dealer)
+    private Dealer dealer;
 
-    public Vehicle(String make, String model, String colour, String registration, int numPassengers, double engineCapacity) {
-        this.id = nextId++;
+    public Vehicle(int id, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer) {
+        this.id = id;
         this.make = make;
         this.model = model;
-        this.colour = colour;
+        this.engine = engine;
         this.registration = registration;
+        this.color = color;
+        this.weightInTonnes = weightInTonnes;
         this.numPassengers = numPassengers;
-        this.engineCapacity = engineCapacity;
+        this.mileage = mileage;
+        this.price = price;
+        this.fuelType = fuelType;
+        this.dealer = dealer;
+    }
+
+    public String getEngine() {
+        return engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getWeightInTonnes() {
+        return weightInTonnes;
+    }
+
+    public void setWeightInTonnes(int weightInTonnes) {
+        this.weightInTonnes = weightInTonnes;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public void setDealer(Dealer dealer) {
+        this.dealer = dealer;
     }
 
     public int getId() {
@@ -44,14 +112,6 @@ public abstract class Vehicle {
         this.model = model;
     }
 
-    public String getColour() {
-        return colour;
-    }
-
-    public void setColour(String colour) {
-        this.colour = colour;
-    }
-
     public String getRegistration() {
         return registration;
     }
@@ -68,24 +128,21 @@ public abstract class Vehicle {
         this.numPassengers = numPassengers;
     }
 
-    public double getEngineCapacity() {
-        return engineCapacity;
-    }
-
-    public void setEngineCapacity(double engineCapacity) {
-        this.engineCapacity = engineCapacity;
-    }
-
     @Override
     public String toString() {
-        return  getClass().getSimpleName() +
-                ", id='" + id + '\'' +
+        return "Vehicle{" +
+                "id=" + id +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", colour='" + colour + '\'' +
+                ", engine='" + engine + '\'' +
                 ", registration='" + registration + '\'' +
+                ", color='" + color + '\'' +
+                ", weightInTonnes=" + weightInTonnes +
                 ", numPassengers=" + numPassengers +
-                ", engineCapacity=" + engineCapacity +
+                ", mileage=" + mileage +
+                ", price=" + price +
+                ", fuelType='" + fuelType + '\'' +
+                ", dealer=" + dealer +
                 '}';
     }
 }

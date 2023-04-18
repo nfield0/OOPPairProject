@@ -293,7 +293,6 @@ CREATE TABLE `vehicles` (
   `color` varchar(20),
   `weight_tonnes` INT NOT NULL,
   `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
   `mileage` int NOT NULL,
   `price` int NOT NULL,
   `fuel_type` varchar(20),
