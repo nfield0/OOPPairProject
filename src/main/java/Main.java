@@ -1,9 +1,11 @@
 import DAOs.MySqlDao;
 import DAOs.MySqlUserDao;
+import DAOs.UserDaoInterface;
 import DTOs.*;
 import Exceptions.DaoException;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -17,22 +19,11 @@ public class Main {
         User u1 = new User(0,"Nathan","nathan@gmail.com","Password1",0);
         User u2 = new User(1,"Arthur","arthur@gmail.com","Password2",1);
 
-        System.out.println("Vehicles");
-
-        System.out.println(c1);
-
-
-
-        System.out.println("Users");
-        System.out.println(u1);
-        System.out.println(u2);
-
         MySqlDao mySqlDao = new MySqlDao();
         mySqlDao.getConnection();
 
-        MySqlUserDao mySqlUserDao = new MySqlUserDao();
-        mySqlUserDao.insertUser(0,"John","john@gmail.com","Password1",0);
-
+        //insertUser(0,"John","john@gmail.com","Password1",0);
+        findAllUsers();
 
 
 
@@ -40,7 +31,28 @@ public class Main {
 
     }
 
+    private static void findAllUsers() {
 
+        UserDaoInterface userDao = new MySqlUserDao();
+        try
+        {
+            List<User> users = userDao.findAllUsers();
+            if(users.isEmpty())
+            {
+                System.out.println("No Users");
+            }
+            else
+            {
+                for(User u : users)
+                {
+                    System.out.println(u);
+                }
+
+            }
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }
