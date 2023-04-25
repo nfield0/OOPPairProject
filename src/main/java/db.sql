@@ -1,262 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 5.1.4deb1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:3306
--- Généré le : ven. 31 mars 2023 à 01:22
--- Version du serveur : 8.0.32-0ubuntu0.22.10.2
--- Version de PHP : 8.1.7-1ubuntu3.3
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `JavaISP`
---
-DROP DATABASE IF EXISTS JavaISP;
-CREATE DATABASE JavaISP CHARACTER SET utf8mb4;
-USE JavaISP;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `boats`
---
-
-CREATE TABLE `boats` (
-  `id` int NOT NULL,
-  `type` text NOT NULL,
-  `name` text NOT NULL,
-  `maker` text NOT NULL,
-  `registration` text NOT NULL,
-  `color` text,
-  `engine` text,
-  `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
-  `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `cars`
---
-
-CREATE TABLE `cars` (
-  `id` int NOT NULL,
-  `type` text NOT NULL,
-  `name` text NOT NULL,
-  `maker` text NOT NULL,
-  `registration` text NOT NULL,
-  `color` text,
-  `engine` text,
-  `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
-  `price` int NOT NULL,
-  `wheels` int DEFAULT NULL,
-  `number_doors` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `planes`
---
-
-CREATE TABLE `planes` (
-  `id` int NOT NULL,
-  `type` text NOT NULL,
-  `name` text NOT NULL,
-  `maker` text NOT NULL,
-  `registration` text NOT NULL,
-  `color` text,
-  `engine` text,
-  `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
-  `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `rental`
---
-
-CREATE TABLE `rental` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `vehicle_id` int NOT NULL,
-  `start_date` date NOT NULL,
-  `duration` int NOT NULL,
-  `rental_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `trucks`
---
-
-CREATE TABLE `trucks` (
-  `id` int NOT NULL,
-  `type` text NOT NULL,
-  `name` text NOT NULL,
-  `maker` text NOT NULL,
-  `registration` text NOT NULL,
-  `color` text,
-  `engine` text,
-  `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
-  `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `users`
---
-
-CREATE TABLE `users` (
-  `id` int NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `password` text NOT NULL,
-  `admin` tinyint(1) DEFAULT NULL,
-  `account_creation` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `vehicles`
---
-
-CREATE TABLE `vehicles` (
-  `id` int NOT NULL,
-  `type` text NOT NULL,
-  `name` text NOT NULL,
-  `maker` text NOT NULL,
-  `registration` text NOT NULL,
-  `color` text,
-  `engine` text,
-  `number_passengers` int DEFAULT NULL,
-  `stock` int NOT NULL,
-  `price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `boats`
---
-ALTER TABLE `boats`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `cars`
---
-ALTER TABLE `cars`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `planes`
---
-ALTER TABLE `planes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `rental`
---
-ALTER TABLE `rental`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `trucks`
---
-ALTER TABLE `trucks`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `boats`
---
-ALTER TABLE `boats`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `cars`
---
-ALTER TABLE `cars`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `planes`
---
-ALTER TABLE `planes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `rental`
---
-ALTER TABLE `rental`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `trucks`
---
-ALTER TABLE `trucks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-
-
-
-
-
-
 
 -- DB Redone
 
@@ -278,13 +19,14 @@ CREATE DATABASE JavaISP CHARACTER SET utf8mb4;
 USE JavaISP;
 
 CREATE TABLE `dealers` (
-  `id` int NOT NULL,
-  `type` varchar(20),
-  `address` varchar(20),
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(20),
+  `address` varchar(100),
+  `phone_num` varchar(20),
   PRIMARY KEY (id)
 );
 CREATE TABLE `vehicles` (
-  `id` int NOT NULL,
+  `vehicle_id` int NOT NULL AUTO_INCREMENT,
   `type` varchar(20) NOT NULL,
   `make` varchar(20) NOT NULL,
   `model` varchar(20) NOT NULL,
@@ -297,47 +39,43 @@ CREATE TABLE `vehicles` (
   `price` int NOT NULL,
   `fuel_type` varchar(20),
   `dealer_id` INT,
-  PRIMARY KEY (id),
+  PRIMARY KEY (vehicle_id),
   FOREIGN KEY (dealer_id) REFERENCES dealers(id)
 );
 
 CREATE TABLE `airplanes` (
-    `id` INT NOT NULL AUTO_INCREMENT,
     `vehicle_id` INT NOT NULL,
     `model_number` VARCHAR(50) NOT NULL,
     `engine_count` VARCHAR(50) NOT NULL,
     `range` INT NOT NULL,
     `max_speed_kmh` int NOT NULL,
     `seating_capacity` INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    PRIMARY KEY (vehicle_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
 );
 
 CREATE TABLE `cars` (
-    `id` INT NOT NULL AUTO_INCREMENT,
     `vehicle_id` INT NOT NULL,
     `number_doors` INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    PRIMARY KEY (vehicle_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
 );
 CREATE TABLE `boats` (
-    `id` INT NOT NULL AUTO_INCREMENT,
     `vehicle_id` INT NOT NULL,
     `number_lifeboats` INT NOT NULL,
     `max_speed_knots` INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    PRIMARY KEY (vehicle_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
 );
 CREATE TABLE `trucks` (
-    `id` INT NOT NULL AUTO_INCREMENT,
     `vehicle_id` INT NOT NULL,
     `weight_limit` INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+    PRIMARY KEY (vehicle_id),
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(vehicle_id)
 );
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
@@ -346,26 +84,60 @@ CREATE TABLE `users` (
   );
 
 CREATE TABLE `rental` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `vehicle_id` int NOT NULL,
+  `dealer_id` int NOT NULL,
   `start_date` date NOT NULL,
   `duration_days` int NOT NULL,
-  `rental_date` date NOT NULL,
+  `created_date` date NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES users(id)
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (dealer_id) REFERENCES dealers(id)
   );
-
-
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
 
 
 -- insert sample data
 
+INSERT INTO users(id,name,email,password,admin)
+VALUES (1,"Arthur","arthur@gmail.com","Password",0),
+       (2,"Nathan","nathan@gmail.com","Password",1);
+
+INSERT INTO dealers (id, name, address, phone_num)
+VALUES (1, 'John Doe', '123 Main St, Anytown USA', '555-1234'),
+       (2, 'Jane Smith', '456 Park Ave, Somewhere USA', '555-5678'),
+       (3, 'Bob Johnson', '789 Elm St, Nowhere USA', '555-9012');
+
+-- Insert data into the vehicle table
+INSERT INTO vehicles (vehicle_id, type, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id)
+VALUES (1, 'Hatchback', 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1),
+       (2, 'Saloon', 'Toyota', 'RAV4', '2.5L Inline 4', 'EF-5678-GH', 'White', '1800kg', 7, 35000, 25000, 'Hybrid', 2),
+       (3, 'Estate', 'Volkswagen', 'Golf GTI', '2.0L Turbocharged', 'IJ-9012-KL', 'Black', '1400kg', 5, 20000, 20000, 'Gasoline', 1);
+
+-- Insert data into the car table
+INSERT INTO cars (vehicle_id, number_doors)
+VALUES (1, 4),
+       (2, 5),
+       (3, 3);
+
+INSERT INTO rental (id, user_id, vehicle_id, dealer_id, start_date, duration_days, created_date)
+VALUES (1, 1, 1, 2,'2023-05-01', 7, '2023-05-01'),
+       (2, 2, 2, 1,'2023-05-02', 5, '2023-05-02'),
+       (3, 1, 3, 3,'2023-05-03', 3, '2023-05-03');
+
+
+--
+---- Sample queries
+--
+SELECT type,make,model,engine,registration,color,weight_tonnes,number_passengers,mileage,price,fuel_type,dealer_id,number_doors FROM vehicles,cars WHERE vehicles.vehicle_id = cars.vehicle_id;
+---- without duplicate ids
+--
+
+
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
