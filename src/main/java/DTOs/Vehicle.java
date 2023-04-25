@@ -4,6 +4,7 @@ import java.util.List;
 
 public abstract class Vehicle {
     private int id;
+    private String type;
     private String make;
     private String model;
     private String engine;
@@ -17,8 +18,9 @@ public abstract class Vehicle {
     // composition (has dealer)
     private Dealer dealer;
 
-    public Vehicle(int id, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer) {
+    public Vehicle(int id, String type,String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer) {
         this.id = id;
+        this.type = type;
         this.make = make;
         this.model = model;
         this.engine = engine;
@@ -30,6 +32,14 @@ public abstract class Vehicle {
         this.price = price;
         this.fuelType = fuelType;
         this.dealer = dealer;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getEngine() {
@@ -132,6 +142,7 @@ public abstract class Vehicle {
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
+                ", type='" + type + '\'' +
                 ", make='" + make + '\'' +
                 ", model='" + model + '\'' +
                 ", engine='" + engine + '\'' +
