@@ -1,9 +1,8 @@
 package DAOs;
 import Exceptions.DaoException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+
 public class MySqlDao  {
     public Connection getConnection() throws DaoException{
         String driver = "com.mysql.cj.jdbc.Driver";
@@ -39,6 +38,38 @@ public class MySqlDao  {
         {
             System.out.println("Failed to free connection: " + e.getMessage());
             System.exit(1);
+        }
+    }
+    public void errorHandling(ResultSet r, PreparedStatement p, Connection c) throws DaoException
+    {
+
+        try {
+            if(r != null)
+            {
+                r.close();
+            }
+            if (p != null) {
+                p.close();
+            }
+            if (c != null) {
+                freeConnection(c);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(Thread.currentThread().getStackTrace()[1].getMethodName() + " " + e.getMessage());
+        }
+    }
+    public void errorHandlingNoResult(PreparedStatement p, Connection c) throws DaoException
+    {
+
+        try {
+            if (p != null) {
+                p.close();
+            }
+            if (c != null) {
+                freeConnection(c);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(Thread.currentThread().getStackTrace()[1].getMethodName() + " " + e.getMessage());
         }
     }
 }

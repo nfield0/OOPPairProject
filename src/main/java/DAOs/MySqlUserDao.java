@@ -75,20 +75,7 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface{
         } catch (SQLException e) {
             throw new DaoException("findAllUsers() " + e.getMessage());
         } finally {
-            try {
-                if(rs != null)
-                {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    freeConnection(conn);
-                }
-            } catch (SQLException e) {
-                throw new DaoException("findAllUsers() " + e.getMessage());
-            }
+                errorHandling(rs,ps,conn);
         }
         return users;
 
