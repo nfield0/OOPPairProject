@@ -1,6 +1,9 @@
-package DAOs;
+package DAOs.Vehicles;
 
-import DTOs.Car;
+import DAOs.DealerDaoInterface;
+import DAOs.MySqlDao;
+import DAOs.MySqlDealerDao;
+import DAOs.Vehicles.VehicleDaoInterface;
 import DTOs.Dealer;
 import DTOs.Vehicle;
 import Exceptions.DaoException;
@@ -14,47 +17,7 @@ import java.util.List;
 
 public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
 
-    public void insertCar(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, int numDoors) throws DaoException {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = this.getConnection();
 
-            String query = "INSERT INTO vehicles VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-
-            ps = conn.prepareStatement(query);
-            ps.setString(1, type);
-            ps.setString(2, make);
-            ps.setString(3, model);
-            ps.setString(4, engine);
-            ps.setString(5, registration);
-            ps.setString(6, color);
-            ps.setDouble(7, weightInTonnes);
-            ps.setInt(8, numPassengers);
-            ps.setInt(9, mileage);
-            ps.setInt(10, price);
-            ps.setString(11, fuelType);
-            ps.setInt(12,dealer.getId());
-            ps.setInt(13,numDoors);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException("insertCar() " + e.getMessage());
-        } finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    freeConnection(conn);
-                }
-            } catch (SQLException e) {
-                throw new DaoException("insertCar() " + e.getMessage());
-            }
-        }
-
-
-    }
     public List<Vehicle> findAllVehicles() throws DaoException
     {
         Connection conn = null;
@@ -66,7 +29,7 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM Vehicles";
+            String query = "SELECT * FROM C";
             ps = conn.prepareStatement(query);
 
             rs = ps.executeQuery();

@@ -1,4 +1,8 @@
 import DAOs.*;
+import DAOs.Vehicles.CarDaoInterface;
+import DAOs.DealerDaoInterface;
+import DAOs.UserDaoInterface;
+import DAOs.Vehicles.MySqlCarDao;
 import DTOs.*;
 import Exceptions.DaoException;
 
@@ -9,26 +13,18 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         System.out.println("Running");
 
-        Dealer dealer = new Dealer(0,"Mercedes Porto","Porto","083123123");
-        Car c1 = new Car(0,"HatchBack","Mazda","Miata","2.1L","0023lm","Red",5,5,4000,3000,"Diesel",dealer,5);
-
-
-
-        User u1 = new User(0,"Nathan","nathan@gmail.com","Password1",0);
-        User u2 = new User(1,"Arthur","arthur@gmail.com","Password2",1);
-
         MySqlDao mySqlDao = new MySqlDao();
         mySqlDao.getConnection();
 
+        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
 
         //insertUser(0,"John","john@gmail.com","Password1",0);
         findAllUsers();
         //insertDealer("Mercedes Dundalk","Dundalk, Co.Louth","087-7741222");
         findAllDealers();
-
+        //insertCar("Hatchback","Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5);
         findAllCars();
 
-        //insertCar("Hatchback","Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,5);
 
 
     }
@@ -66,13 +62,13 @@ public class Main {
             throw new RuntimeException(e);
         }
     }
-    private static void insertCar(String type,String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, int numDoors)
+    private static void insertCar(String type,String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numDoors)
     {
-        VehicleDaoInterface vehicleDao = new MySqlVehicleDao();
+        CarDaoInterface carDao = new MySqlCarDao();
         try
         {
 
-            vehicleDao.insertCar(type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,numDoors);
+            carDao.insertCar(type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl, numDoors);
 
 
         } catch (DaoException e) {

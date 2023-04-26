@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlUserDao extends MySqlDao implements UserDaoInterface{
+public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
 
     public void insertUser(int id, String name, String email, String password, int admin) throws DaoException {
         Connection conn = null;

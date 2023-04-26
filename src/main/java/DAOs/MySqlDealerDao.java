@@ -1,8 +1,6 @@
 package DAOs;
 
-import DTOs.Car;
 import DTOs.Dealer;
-import DTOs.Vehicle;
 import Exceptions.DaoException;
 
 import java.sql.Connection;
