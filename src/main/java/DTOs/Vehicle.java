@@ -17,8 +17,9 @@ public abstract class Vehicle {
     private String fuelType;
     // composition (has dealer)
     private Dealer dealer;
+    private String imgUrl;
 
-    public Vehicle(int id, String type,String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer) {
+    public Vehicle(int id, String type,String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) {
         this.id = id;
         this.type = type;
         this.make = make;
@@ -32,6 +33,7 @@ public abstract class Vehicle {
         this.price = price;
         this.fuelType = fuelType;
         this.dealer = dealer;
+        this.imgUrl = imgUrl;
     }
 
     public String getType() {
@@ -98,6 +100,14 @@ public abstract class Vehicle {
         this.dealer = dealer;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public int getId() {
         return id;
     }
@@ -153,7 +163,8 @@ public abstract class Vehicle {
                 ", mileage=" + mileage +
                 ", price=" + price +
                 ", fuelType='" + fuelType + '\'' +
-                ", dealer=" + dealer +
+                ", dealer=" + dealer + '\'' +
+                ", imgUrl=" + imgUrl +
                 '}';
     }
 }

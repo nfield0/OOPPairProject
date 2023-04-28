@@ -72,7 +72,7 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT vehicle_id,type,make,model,engine,registration,color,weight_tonnes,number_passengers,mileage,price,fuel_type,dealer_id,number_doors FROM cars;";
+            String query = "SELECT vehicle_id,type,make,model,engine,registration,color,weight_tonnes,number_passengers,mileage,price,fuel_type,dealer_id,img_url,number_doors FROM cars;";
 
             ps = conn.prepareStatement(query);
 
@@ -94,8 +94,9 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
                 //find dealer
                 int dealer_id = rs.getInt("dealer_id");
                 Dealer dealer = dealerDao.findDealerById(dealer_id);
+                String imgUrl = rs.getString("img_url");
                 int numDoors = rs.getInt("number_doors");
-                Car c = new Car(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,numDoors);
+                Car c = new Car(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numDoors);
                 cars.add(c);
             }
 
