@@ -3,7 +3,7 @@ package DAOs.Vehicles;
 import DAOs.DealerDaoInterface;
 import DAOs.MySqlDao;
 import DAOs.MySqlDealerDao;
-import DAOs.Vehicles.CarDaoInterface;
+import DTOs.Boat;
 import DTOs.Car;
 import DTOs.Dealer;
 import DTOs.Vehicle;
@@ -16,56 +16,63 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
-
-    public void insertCar(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer,String imgUrl, int numDoors) throws DaoException {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        try {
-            conn = this.getConnection();
-
-            String query = "INSERT INTO cars VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-            ps = conn.prepareStatement(query);
-            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
-            ps.setInt(14, numDoors);
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            throw new DaoException("insertCar() " + e.getMessage());
-        } finally {
-                errorHandlingNoResult(ps,conn);
-        }
+public class MySqlBoatDao extends MySqlDao implements BoatDaoInterface {
 
 
-    }
-    public List<Car> findAllCars() throws DaoException
+    public List<Boat> findAllBoats() throws DaoException
     {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        List<Car> list = new ArrayList<>();
+        List<Boat> list = new ArrayList<>();
 
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM cars;";
+            String query = "SELECT * FROM boats;";
 
             ps = conn.prepareStatement(query);
 
             rs = ps.executeQuery();
             while(rs.next()){
 
-                list.add((Car) createVehicle(rs));
+                list.add((Boat) createVehicle(rs));
             }
+
+
         } catch (SQLException e) {
-            throw new DaoException("findAllCars() " + e.getMessage());
+            throw new DaoException("findAllBoats() " + e.getMessage());
         } finally {
             errorHandling(rs,ps,conn);
         }
         return list;
 
     }
+    public void insertBoat(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numberLifeBoats, int max_speed_knots) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = this.getConnection();
 
+            String query = "INSERT INTO boats VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+            ps = conn.prepareStatement(query);
+
+            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+
+            ps.setInt(14, numberLifeBoats);
+            ps.setInt(15, max_speed_knots);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("insertBoat() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
+
+
+    }
     public Vehicle createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
@@ -84,7 +91,8 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
         int dealer_id = rs.getInt("dealer_id");
         Dealer dealer = dealerDao.findDealerById(dealer_id);
         String imgUrl = rs.getString("img_url");
-        int numDoors = rs.getInt("number_doors");
-        return new Car(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numDoors);
+        int numLifeBoats = rs.getInt("number_lifeboats");
+        int max_speed_knots = rs.getInt("max_speed_knots");
+        return new Boat(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numLifeBoats,max_speed_knots);
     }
 }

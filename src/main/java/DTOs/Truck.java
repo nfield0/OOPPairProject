@@ -1,6 +1,6 @@
 package DTOs;
 
-public class Truck extends Vehicle{
+public class Truck extends Vehicle {
 
     private int weight_capacity;
 

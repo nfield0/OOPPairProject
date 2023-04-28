@@ -1,4 +1,7 @@
 package DAOs;
+import DTOs.Car;
+import DTOs.Dealer;
+import DTOs.Vehicle;
 import Exceptions.DaoException;
 
 import java.sql.*;
@@ -40,6 +43,22 @@ public class MySqlDao  {
             System.exit(1);
         }
     }
+    public void setVehicle(PreparedStatement ps, String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) throws SQLException {
+        ps.setString(1, type);
+        ps.setString(2, make);
+        ps.setString(3, model);
+        ps.setString(4, engine);
+        ps.setString(5, registration);
+        ps.setString(6, color);
+        ps.setDouble(7, weightInTonnes);
+        ps.setInt(8, numPassengers);
+        ps.setInt(9, mileage);
+        ps.setInt(10, price);
+        ps.setString(11, fuelType);
+        ps.setInt(12, dealer.getId());
+        ps.setString(13, imgUrl);
+    }
+
     public void errorHandling(ResultSet r, PreparedStatement p, Connection c) throws DaoException
     {
 

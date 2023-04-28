@@ -1,7 +1,5 @@
 package DTOs;
 
-import java.util.List;
-
 public abstract class Vehicle {
     private int id;
     private String type;

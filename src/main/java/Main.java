@@ -1,11 +1,11 @@
 import DAOs.*;
-import DAOs.Vehicles.CarDaoInterface;
+import DAOs.Vehicles.*;
 import DAOs.DealerDaoInterface;
 import DAOs.UserDaoInterface;
-import DAOs.Vehicles.MySqlCarDao;
 import DTOs.*;
 import Exceptions.DaoException;
 
+import java.sql.Array;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,11 +22,37 @@ public class Main {
         findAllUsers();
         //insertDealer("Mercedes Dundalk","Dundalk, Co.Louth","087-7741222");
         findAllDealers();
-        //insertCar("Hatchback","Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5);
+        // insertCar("Hatchback","Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5);
         findAllCars();
 
+        findAllBoats();
+
+        findAllTrucks();
+
+        findAllPlanes();
 
 
+
+    }
+    private static void findAllTrucks() {
+        TruckDaoInterface dao = new MySqlTruckDao();
+        try
+        {
+            List<Truck> list = dao.findAllTrucks();
+            printVehicles(list, "Trucks");
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private static void findAllPlanes() {
+        PlaneDaoInterface dao = new MySqlPlaneDao();
+        try
+        {
+            List<Plane> list = dao.findAllPlanes();
+            printVehicles(list, "Planes");
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void findAllDealers() {
@@ -34,18 +60,7 @@ public class Main {
         try
         {
             List<Dealer> dealers = dealerDao.findAllDealers();
-            if(dealers.isEmpty())
-            {
-                System.out.println("No Dealers");
-            }
-            else
-            {
-                for(Dealer d: dealers)
-                {
-                    System.out.println(d);
-                }
-
-            }
+            printVehicles(dealers, "Dealers");
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -56,8 +71,6 @@ public class Main {
         try
         {
             dealerDao.insertDealer(name,address,phone_num);
-
-
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -67,10 +80,7 @@ public class Main {
         CarDaoInterface carDao = new MySqlCarDao();
         try
         {
-
             carDao.insertCar(type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl, numDoors);
-
-
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -83,18 +93,7 @@ public class Main {
         try
         {
             List<User> users = userDao.findAllUsers();
-            if(users.isEmpty())
-            {
-                System.out.println("No Users");
-            }
-            else
-            {
-                for(User u : users)
-                {
-                    System.out.println(u);
-                }
-
-            }
+            printVehicles(users, "Users");
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
@@ -104,22 +103,38 @@ public class Main {
         try
         {
             List<Car> cars = carDao.findAllCars();
-            if(cars.isEmpty())
-            {
-                System.out.println("No Cars");
-            }
-            else
-            {
-                for(Car c : cars)
-                {
-                    System.out.println(c);
-                }
-
-            }
+            printVehicles(cars,"Cars");
         } catch (DaoException e) {
             throw new RuntimeException(e);
         }
 
+    }
+    private static void findAllBoats() {
+        BoatDaoInterface boatDao = new MySqlBoatDao();
+        try
+        {
+            List<Boat> boats = boatDao.findAllBoats();
+            printVehicles(boats,"Boats");
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static <T> void printVehicles(List<T> list,String type)
+    {
+
+        if(list.isEmpty())
+        {
+            System.out.println("No " + type + " found");
+        }
+        else
+        {
+            for(T i : list)
+            {
+                System.out.println(i);
+            }
+
+        }
     }
 
 

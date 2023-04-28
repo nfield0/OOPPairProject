@@ -42,7 +42,7 @@ CREATE TABLE `airplanes` (
       `dealer_id` INT,
       `img_url` VARCHAR(200),
     `engine_count` VARCHAR(50) NOT NULL,
-    `range` INT NOT NULL,
+    `flightRange` INT NOT NULL,
     `max_speed_knots` int NOT NULL,
     `seating_capacity` INT NOT NULL,
     PRIMARY KEY (vehicle_id),
@@ -103,7 +103,7 @@ CREATE TABLE `trucks` (
       `fuel_type` varchar(20),
       `dealer_id` INT,
       `img_url` VARCHAR(200),
-    `weight_limit` INT NOT NULL,
+    `weight_capacity` INT NOT NULL,
     PRIMARY KEY (vehicle_id),
     FOREIGN KEY (dealer_id) REFERENCES dealers(id)
 );
@@ -158,7 +158,7 @@ VALUES ('Cabin Cruiser', 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 
       ('Pontoon Boat', 'Sun Tracker', 'Fishin Barge 24 XP3', 'Mercury 150HP', 'TX7890', 'Yellow', 2.2, 12, 50, 35000, 'Gasoline', 1,'', 0, 20);
 
 
-INSERT INTO trucks (type, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,weight_limit)
+INSERT INTO trucks (type, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,weight_capacity)
 VALUES ('Semi-Trailer', 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, '', 80000),
 ('Dump Truck', 'Mack', 'Granite GU713', 'Mack MP8', 'NY5678', 'Red', 24.5, 3, 250000, 170000, 'Diesel', 1, '', 66000),
 ('Box Truck', 'Isuzu', 'NQR', 'Isuzu 4HK1-TC', 'CA9012', 'White', 7.5, 3, 200000, 40000, 'Diesel', 1, '', 17950),
@@ -174,12 +174,12 @@ VALUES (1, 1, 1, 2,'2023-05-01', 7, '2023-05-01'),
 
 
 
---INSERT INTO airplanes (type, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,range,max_speed_knots,seating_capacity)
---VALUES ('Commercial', 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, '', 2, 3700, 470, 220),
---('Business Jet', 'Gulfstream', 'G650', 'Rolls-Royce BR725', 'N54321', 'Blue', 45.6, 19, 7000, 65000000, 'Jet A', 3, '', 2, 7500, 594, 8),
---('Helicopter', 'Eurocopter', 'AS350', 'Turbomeca Arriel 1D1', 'N78901', 'Red', 2.3, 5, 1000, 1500000, 'Jet A', 3, '', 1, 400, 135, 5),
---('Private Jet', 'Cessna', 'Citation Latitude', 'Pratt & Whitney Canada PW306D1', 'N24680', 'Silver', 16.5, 9, 2400, 17000000, 'Jet A', 2, '', 2, 2800, 446, 9),
---('Military', 'Lockheed Martin', 'F-35 Lightning II', 'Pratt & Whitney F135-PW-100', 'USAF001', 'Grey', 13.3, 1, 1200, 89000000, 'Jet A', 2, '', 1, 2200, 1199, 1);
+INSERT INTO airplanes (type, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
+VALUES ('Commercial', 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, '', 2, 3700, 470, 220),
+        ('Business Jet', 'Gulfstream', 'G650', 'Rolls-Royce BR725', 'N54321', 'Blue', 45.6, 19, 7000, 65000000, 'Jet A', 3, '', 2, 7500, 594, 8),
+        ('Helicopter', 'Eurocopter', 'AS350', 'Turbomeca Arriel 1D1', 'N78901', 'Red', 2.3, 5, 1000, 1500000, 'Jet A', 3, '', 1, 400, 135, 5),
+        ('Private Jet', 'Cessna', 'Citation Latitude', 'Pratt & Whitney Canada PW306D1', 'N24680', 'Silver', 16.5, 9, 2400, 17000000, 'Jet A', 2, '', 2, 2800, 446, 9),
+        ('Military', 'Lockheed Martin', 'F-35 Lightning II', 'Pratt & Whitney F135-PW-100', 'USAF001', 'Grey', 13.3, 1, 1200, 89000000, 'Jet A', 2, '', 1, 2200, 1199, 1);
 
 
 

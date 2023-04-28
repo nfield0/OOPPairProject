@@ -1,6 +1,5 @@
 package DAOs.Vehicles;
 
-import DTOs.Dealer;
 import DTOs.Vehicle;
 import Exceptions.DaoException;
 

@@ -1,25 +1,36 @@
 package DTOs;
 
 public class Boat extends Vehicle {
-    private int numSails;
+    private int numLifeBoats;
+    private int max_speed_knots;
 
-    public Boat(int id, String type, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numSails) {
+    public Boat(int id, String type, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numLifeBoats,int max_speed_knots) {
         super(id, type, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer,imgUrl);
-        this.numSails = numSails;
+        this.numLifeBoats = numLifeBoats;
+        this.max_speed_knots = max_speed_knots;
     }
 
-    public int getNumSails() {
-        return numSails;
+    public int getNumLifeBoats() {
+        return numLifeBoats;
     }
 
-    public void setNumSails(int numSails) {
-        this.numSails = numSails;
+    public void setNumLifeBoats(int numLifeBoats) {
+        this.numLifeBoats = numLifeBoats;
+    }
+
+    public int getMax_speed_knots() {
+        return max_speed_knots;
+    }
+
+    public void setMax_speed_knots(int max_speed_knots) {
+        this.max_speed_knots = max_speed_knots;
     }
 
     @Override
     public String toString() {
         return "Boat{" +
-                "numSails=" + numSails +
-                '}' + super.toString();
+                "numLifeBoats=" + numLifeBoats +
+                ", max_speed_knots=" + max_speed_knots +
+                '}';
     }
 }
