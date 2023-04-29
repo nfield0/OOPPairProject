@@ -1,4 +1,4 @@
-package DAOs.Vehicles;
+package DAOs.Vehicles.Interfaces;
 
 import DTOs.Vehicle;
 import Exceptions.DaoException;

@@ -58,7 +58,36 @@ public class MySqlDao  {
         ps.setInt(12, dealer.getId());
         ps.setString(13, imgUrl);
     }
+    public void deleteById(String tableName, String idColumn, int id) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int result;
 
+        try {
+            conn = this.getConnection();
+
+            String query = "DELETE FROM " + tableName +" WHERE " + idColumn + " = ?";
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+
+            result = ps.executeUpdate();
+            if(result != 0)
+            {
+                System.out.println("Deleted item from " + tableName );
+            }
+            else{
+                System.out.println("Item from " + tableName + " does not exist");
+            }
+
+
+        } catch (SQLException e) {
+            throw new DaoException("findAllUsers() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
+
+    }
     public void errorHandling(ResultSet r, PreparedStatement p, Connection c) throws DaoException
     {
 

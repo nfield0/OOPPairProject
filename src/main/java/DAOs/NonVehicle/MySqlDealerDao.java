@@ -1,5 +1,7 @@
-package DAOs;
+package DAOs.NonVehicle;
 
+import DAOs.MySqlDao;
+import DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import DTOs.Dealer;
 import Exceptions.DaoException;
 
@@ -69,7 +71,11 @@ public class MySqlDealerDao extends MySqlDao implements DealerDaoInterface {
         }
         return dealers;
     }
-
+    public void deleteById(int id) throws DaoException
+    {
+        MySqlDao dao = new MySqlDao();
+        dao.deleteById("dealers","vehicle_id",id);
+    }
     public Dealer findDealerById(int id) throws DaoException {
         Connection conn = null;
         PreparedStatement ps = null;

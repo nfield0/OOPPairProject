@@ -1,11 +1,16 @@
 import DAOs.*;
+import DAOs.NonVehicle.MySqlDealerDao;
+import DAOs.NonVehicle.MySqlUserDao;
 import DAOs.Vehicles.*;
-import DAOs.DealerDaoInterface;
-import DAOs.UserDaoInterface;
+import DAOs.NonVehicle.Interfaces.DealerDaoInterface;
+import DAOs.NonVehicle.Interfaces.UserDaoInterface;
+import DAOs.Vehicles.Interfaces.BoatDaoInterface;
+import DAOs.Vehicles.Interfaces.CarDaoInterface;
+import DAOs.Vehicles.Interfaces.PlaneDaoInterface;
+import DAOs.Vehicles.Interfaces.TruckDaoInterface;
 import DTOs.*;
 import Exceptions.DaoException;
 
-import java.sql.Array;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,8 +29,11 @@ public class Main {
         findAllDealers();
         // insertCar("Hatchback","Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5);
         findAllCars();
+        System.out.println("Find one");
+        findCarById(1);
 
         findAllBoats();
+
 
         findAllTrucks();
 
@@ -34,6 +42,12 @@ public class Main {
 
 
     }
+
+    private static void findCarById(int id) throws DaoException {
+        CarDaoInterface carDao = new MySqlCarDao();
+        System.out.println(carDao.findCarById(id));
+    }
+
     private static void findAllTrucks() {
         TruckDaoInterface dao = new MySqlTruckDao();
         try

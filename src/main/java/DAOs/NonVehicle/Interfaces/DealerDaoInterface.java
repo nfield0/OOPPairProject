@@ -1,4 +1,4 @@
-package DAOs;
+package DAOs.NonVehicle.Interfaces;
 
 import DTOs.Dealer;
 import Exceptions.DaoException;
@@ -12,6 +12,7 @@ public interface DealerDaoInterface {
     public List<Dealer> findAllDealers() throws DaoException;
     public Dealer findDealerById(int id) throws DaoException;
 
+    public void deleteById(int id) throws DaoException;
 
 
 

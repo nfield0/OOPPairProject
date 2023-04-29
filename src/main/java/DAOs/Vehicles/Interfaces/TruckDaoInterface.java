@@ -1,4 +1,4 @@
-package DAOs.Vehicles;
+package DAOs.Vehicles.Interfaces;
 
 import DTOs.Dealer;
 import DTOs.Truck;
@@ -12,6 +12,7 @@ public interface TruckDaoInterface {
 
     public List<Truck> findAllTrucks() throws DaoException;
 
+    public void deleteById(int id) throws DaoException;
 
 
 

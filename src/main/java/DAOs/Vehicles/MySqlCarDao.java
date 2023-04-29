@@ -1,12 +1,11 @@
 package DAOs.Vehicles;
 
-import DAOs.DealerDaoInterface;
+import DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import DAOs.MySqlDao;
-import DAOs.MySqlDealerDao;
-import DAOs.Vehicles.CarDaoInterface;
+import DAOs.NonVehicle.MySqlDealerDao;
+import DAOs.Vehicles.Interfaces.CarDaoInterface;
 import DTOs.Car;
 import DTOs.Dealer;
-import DTOs.Vehicle;
 import Exceptions.DaoException;
 
 import java.sql.Connection;
@@ -65,8 +64,39 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
         return list;
 
     }
+    public Car findCarById(int id) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Car v = null;
 
-    public Vehicle createVehicle(ResultSet rs) throws SQLException {
+        try {
+            conn = this.getConnection();
+
+            String query = "SELECT * FROM cars where vehicle_id = ?";
+
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                v = createVehicle(rs);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("findCarById() " + e.getMessage());
+        } finally {
+            errorHandling(rs,ps,conn);
+        }
+        return v;
+    }
+    public void deleteById(int id) throws DaoException
+    {
+        MySqlDao dao = new MySqlDao();
+        dao.deleteById("cars","vehicle_id",id);
+    }
+
+    public Car createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
         String type = rs.getString("type");

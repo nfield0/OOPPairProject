@@ -1,11 +1,11 @@
 package DAOs.Vehicles;
 
-import DAOs.DealerDaoInterface;
+import DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import DAOs.MySqlDao;
-import DAOs.MySqlDealerDao;
+import DAOs.NonVehicle.MySqlDealerDao;
+import DAOs.Vehicles.Interfaces.PlaneDaoInterface;
 import DTOs.Dealer;
 import DTOs.Plane;
-import DTOs.Truck;
 import DTOs.Vehicle;
 import Exceptions.DaoException;
 
@@ -74,6 +74,11 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         }
 
 
+    }
+    public void deleteById(int id) throws DaoException
+    {
+        MySqlDao dao = new MySqlDao();
+        dao.deleteById("airplanes","vehicle_id",id);
     }
     public Vehicle createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();

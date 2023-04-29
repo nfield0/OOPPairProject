@@ -1,5 +1,7 @@
-package DAOs;
+package DAOs.NonVehicle;
 
+import DAOs.MySqlDao;
+import DAOs.NonVehicle.Interfaces.UserDaoInterface;
 import DTOs.User;
 import Exceptions.DaoException;
 
@@ -31,16 +33,7 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
         } catch (SQLException e) {
             throw new DaoException("insertUser() " + e.getMessage());
         } finally {
-            try {
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    freeConnection(conn);
-                }
-            } catch (SQLException e) {
-                throw new DaoException("insertUser() " + e.getMessage());
-            }
+            errorHandlingNoResult(ps,conn);
         }
 
 
@@ -78,6 +71,10 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
                 errorHandling(rs,ps,conn);
         }
         return users;
-
+    }
+    public void deleteById(int id) throws DaoException
+    {
+        MySqlDao dao = new MySqlDao();
+        dao.deleteById("users","vehicle_id",id);
     }
 }
