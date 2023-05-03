@@ -8,7 +8,7 @@ public abstract class Vehicle {
     private String engine;
     private String registration;
     private String color;
-    private int weightInTonnes;
+    private double weightInTonnes;
     private int numPassengers;
     private int mileage;
     private int price;
@@ -17,7 +17,7 @@ public abstract class Vehicle {
     private Dealer dealer;
     private String imgUrl;
 
-    public Vehicle(int id, String type,String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) {
+    public Vehicle(int id, String type,String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) {
         this.id = id;
         this.type = type;
         this.make = make;
@@ -58,7 +58,7 @@ public abstract class Vehicle {
         this.color = color;
     }
 
-    public int getWeightInTonnes() {
+    public double getWeightInTonnes() {
         return weightInTonnes;
     }
 

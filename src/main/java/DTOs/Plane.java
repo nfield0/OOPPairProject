@@ -6,7 +6,7 @@ public class Plane extends Vehicle {
     private int max_speed_knots;
     private int seating_capacity;
 
-    public Plane(int id, String type, String make, String model, String engine, String registration, String color, int weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines, int range, int max_speed_knots, int seating_capacity) {
+    public Plane(int id, String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines, int range, int max_speed_knots, int seating_capacity) {
         super(id, type, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer, imgUrl);
         this.numEngines = numEngines;
         this.range = range;
