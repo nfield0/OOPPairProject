@@ -9,7 +9,7 @@ import java.sql.*;
 public class MySqlDao  {
     public Connection getConnection() throws DaoException{
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/javaisp";
+        String url = "jdbc:mysql://localhost:3306/javaisp?allowMultiQueries=true";
         String username = "root";
         String password = "";
         Connection connection = null;
@@ -43,20 +43,19 @@ public class MySqlDao  {
             System.exit(1);
         }
     }
-    public void setVehicle(PreparedStatement ps, String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) throws SQLException {
-        ps.setString(1, type);
-        ps.setString(2, make);
-        ps.setString(3, model);
-        ps.setString(4, engine);
-        ps.setString(5, registration);
-        ps.setString(6, color);
-        ps.setDouble(7, weightInTonnes);
-        ps.setInt(8, numPassengers);
-        ps.setInt(9, mileage);
-        ps.setInt(10, price);
-        ps.setString(11, fuelType);
-        ps.setInt(12, dealer.getId());
-        ps.setString(13, imgUrl);
+    public void setVehicle(PreparedStatement ps, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) throws SQLException {
+        ps.setString(1, make);
+        ps.setString(2, model);
+        ps.setString(3, engine);
+        ps.setString(4, registration);
+        ps.setString(5, color);
+        ps.setDouble(6, weightInTonnes);
+        ps.setInt(7, numPassengers);
+        ps.setInt(8, mileage);
+        ps.setInt(9, price);
+        ps.setString(10, fuelType);
+        ps.setInt(11, dealer.getId());
+        ps.setString(12, imgUrl);
     }
     public void deleteById(String tableName, String idColumn, int id) throws DaoException
     {
@@ -67,9 +66,13 @@ public class MySqlDao  {
         try {
             conn = this.getConnection();
 
-            String query = "DELETE FROM " + tableName +" WHERE " + idColumn + " = ?";
+            String query = "START TRANSACTION;" +
+                    "DELETE FROM " + tableName +" WHERE " + idColumn + " = ?;" +
+                    "DELETE FROM vehicles WHERE " + idColumn + " = ?;" +
+                    "COMMIT;";
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);
+            ps.setInt(2,id);
 
             result = ps.executeUpdate();
             if(result != 0)
@@ -82,7 +85,7 @@ public class MySqlDao  {
 
 
         } catch (SQLException e) {
-            throw new DaoException("findAllUsers() " + e.getMessage());
+            throw new DaoException("deleteById() " + e.getMessage());
         } finally {
             errorHandlingNoResult(ps,conn);
         }
