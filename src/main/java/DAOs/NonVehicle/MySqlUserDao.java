@@ -2,6 +2,7 @@ package DAOs.NonVehicle;
 
 import DAOs.MySqlDao;
 import DAOs.NonVehicle.Interfaces.UserDaoInterface;
+import DTOs.Boat;
 import DTOs.User;
 import Exceptions.DaoException;
 
@@ -71,6 +72,39 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
                 errorHandling(rs,ps,conn);
         }
         return users;
+    }
+    public User findUserById(int id) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        User u = null;
+
+        try {
+            conn = this.getConnection();
+
+            String query = "SELECT * FROM users where user_id = ?";
+
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int uid = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int admin = rs.getInt("admin");
+
+                return new User(uid,name,email,password,admin);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("findUserById() " + e.getMessage());
+        } finally {
+            errorHandling(rs,ps,conn);
+        }
+        return null;
     }
     public void deleteById(int id) throws DaoException
     {

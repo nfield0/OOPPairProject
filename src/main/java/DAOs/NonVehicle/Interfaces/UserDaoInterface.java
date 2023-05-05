@@ -11,6 +11,8 @@ public interface UserDaoInterface {
 
     public List<User> findAllUsers() throws DaoException;
     public void deleteById(int id) throws DaoException;
+    public User findUserById(int id) throws DaoException;
+
 
 
 
