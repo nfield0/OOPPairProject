@@ -36,7 +36,7 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
             rs = ps.executeQuery();
             while(rs.next()){
 
-                list.add((Plane) createVehicle(rs));
+                list.add(createVehicle(rs));
             }
 
 
@@ -48,23 +48,28 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         return list;
 
     }
-    public void insertPlane(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines,int range, int max_speed_knots, int seating_capacity) throws DaoException
+    public void insertPlane(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines,int range, int max_speed_knots, int seating_capacity) throws DaoException
     {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = this.getConnection();
 
-            String query = "INSERT INTO airplanes VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-
+            String query = """
+                    START TRANSACTION;
+                    INSERT INTO vehicles (type) VALUES
+                    ('Airplane');
+                    INSERT INTO airplanes (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
+                    VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);
+                    COMMIT;""";
             ps = conn.prepareStatement(query);
 
-            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+            setVehicle(ps,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
 
-            ps.setInt(14, numEngines);
-            ps.setInt(15, range);
-            ps.setInt(16, max_speed_knots);
-            ps.setInt(17, seating_capacity);
+            ps.setInt(13, numEngines);
+            ps.setInt(14, range);
+            ps.setInt(15, max_speed_knots);
+            ps.setInt(16, seating_capacity);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -80,10 +85,9 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         MySqlDao dao = new MySqlDao();
         dao.deleteById("airplanes","vehicle_id",id);
     }
-    public Vehicle createVehicle(ResultSet rs) throws SQLException {
+    public Plane createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
-        String type = rs.getString("type");
         String make = rs.getString("make");
         String model = rs.getString("model");
         String engine = rs.getString("engine");
@@ -103,6 +107,6 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         int max_speed_knots = rs.getInt("max_speed_knots");
         int seating_capacity = rs.getInt("seating_capacity");
 
-        return new Plane(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numEngines,range,max_speed_knots,seating_capacity);
+        return new Plane(id,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numEngines,range,max_speed_knots,seating_capacity);
     }
 }

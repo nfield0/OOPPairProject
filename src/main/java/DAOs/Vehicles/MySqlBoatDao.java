@@ -47,21 +47,26 @@ public class MySqlBoatDao extends MySqlDao implements BoatDaoInterface {
         return list;
 
     }
-    public void insertBoat(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numberLifeBoats, int max_speed_knots) throws DaoException
+    public void insertBoat(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numberLifeBoats, int max_speed_knots) throws DaoException
     {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = this.getConnection();
 
-            String query = "INSERT INTO boats VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-
+            String query = """
+                    START TRANSACTION;
+                    INSERT INTO vehicles (type) VALUES
+                    ('Boat');
+                    INSERT INTO boats (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_lifeboats,max_speed_knots)
+                    VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?);
+                    COMMIT;""";
             ps = conn.prepareStatement(query);
 
-            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+            setVehicle(ps,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
 
-            ps.setInt(14, numberLifeBoats);
-            ps.setInt(15, max_speed_knots);
+            ps.setInt(13, numberLifeBoats);
+            ps.setInt(14, max_speed_knots);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -106,7 +111,6 @@ public class MySqlBoatDao extends MySqlDao implements BoatDaoInterface {
     public Boat createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
-        String type = rs.getString("type");
         String make = rs.getString("make");
         String model = rs.getString("model");
         String engine = rs.getString("engine");
@@ -123,6 +127,6 @@ public class MySqlBoatDao extends MySqlDao implements BoatDaoInterface {
         String imgUrl = rs.getString("img_url");
         int numLifeBoats = rs.getInt("number_lifeboats");
         int max_speed_knots = rs.getInt("max_speed_knots");
-        return new Boat(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numLifeBoats,max_speed_knots);
+        return new Boat(id,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numLifeBoats,max_speed_knots);
     }
 }

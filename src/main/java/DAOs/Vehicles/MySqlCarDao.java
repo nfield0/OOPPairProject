@@ -17,16 +17,22 @@ import java.util.List;
 
 public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
 
-    public void insertCar(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer,String imgUrl, int numDoors) throws DaoException {
+    public void insertCar(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer,String imgUrl, int numDoors) throws DaoException {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = this.getConnection();
 
-            String query = "INSERT INTO cars VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            String query = """
+                    START TRANSACTION;
+                    INSERT INTO vehicles (type) VALUES
+                    ('Car');
+                    INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
+                    VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?);
+                    COMMIT;""";
             ps = conn.prepareStatement(query);
-            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
-            ps.setInt(14, numDoors);
+            setVehicle(ps,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+            ps.setInt(13, numDoors);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -54,7 +60,7 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
             rs = ps.executeQuery();
             while(rs.next()){
 
-                list.add((Car) createVehicle(rs));
+                list.add( createVehicle(rs));
             }
         } catch (SQLException e) {
             throw new DaoException("findAllCars() " + e.getMessage());
@@ -99,7 +105,6 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
     public Car createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
-        String type = rs.getString("type");
         String make = rs.getString("make");
         String model = rs.getString("model");
         String engine = rs.getString("engine");
@@ -115,6 +120,6 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
         Dealer dealer = dealerDao.findDealerById(dealer_id);
         String imgUrl = rs.getString("img_url");
         int numDoors = rs.getInt("number_doors");
-        return new Car(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numDoors);
+        return new Car(id,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,numDoors);
     }
 }

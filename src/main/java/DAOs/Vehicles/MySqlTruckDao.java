@@ -36,7 +36,7 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
             rs = ps.executeQuery();
             while(rs.next()){
 
-                list.add((Truck) createVehicle(rs));
+                list.add(createVehicle(rs));
             }
 
 
@@ -48,20 +48,25 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
         return list;
 
     }
-    public void insertTruck(String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int weight_capacity) throws DaoException
+    public void insertTruck(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int weight_capacity) throws DaoException
     {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
             conn = this.getConnection();
 
-            String query = "INSERT INTO trucks VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-
+            String query = """
+                    START TRANSACTION;
+                    INSERT INTO vehicles (type) VALUES
+                    ('Truck');
+                    INSERT INTO trucks (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,weight_capacity)
+                    VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?);
+                    COMMIT;""";
             ps = conn.prepareStatement(query);
 
-            setVehicle(ps,type,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+            setVehicle(ps,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
 
-            ps.setInt(14, weight_capacity);
+            ps.setInt(13, weight_capacity);
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -77,10 +82,9 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
         MySqlDao dao = new MySqlDao();
         dao.deleteById("trucks","vehicle_id",id);
     }
-    public Vehicle createVehicle(ResultSet rs) throws SQLException {
+    public Truck createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
         int id = rs.getInt("vehicle_id");
-        String type = rs.getString("type");
         String make = rs.getString("make");
         String model = rs.getString("model");
         String engine = rs.getString("engine");
@@ -96,6 +100,6 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
         Dealer dealer = dealerDao.findDealerById(dealer_id);
         String imgUrl = rs.getString("img_url");
         int weight_capacity = rs.getInt("weight_capacity");
-        return new Truck(id,type,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,weight_capacity);
+        return new Truck(id,make,model,engine,registration,color,weight,number_passengers,mileage,price,fuel_type,dealer,imgUrl,weight_capacity);
     }
 }
