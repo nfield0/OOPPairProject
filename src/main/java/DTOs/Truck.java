@@ -4,8 +4,9 @@ public class Truck extends Vehicle {
 
     private int weight_capacity;
 
-    public Truck(int id, String type, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl, int weight_capacity) {
-        super(id, type, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer, imgUrl);
+    public Truck(int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl, int weight_capacity) {
+        super(id, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer, imgUrl);
+        this.setType("Truck");
         this.weight_capacity = weight_capacity;
     }
 
@@ -19,9 +20,8 @@ public class Truck extends Vehicle {
 
     @Override
     public String toString() {
-        return "{" +
-                "weight_capacity=" + weight_capacity +
-                '}'
-                + super.toString();
+        return super.toString() +
+                ", weight_capacity=" + weight_capacity +
+                '}';
     }
 }
