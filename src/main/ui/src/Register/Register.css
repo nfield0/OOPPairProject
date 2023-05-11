@@ -1,0 +1,83 @@
+@import url("https://use.typekit.net/swa0fjs.css");
+
+body {
+    margin: 0;
+    background-color: hsl(0, 0%, 98%);
+    color: #333;
+    font-family: "new-hero", sans-serif;
+}
+
+main {
+    margin: 0 auto;
+    padding: 4rem 0;
+    width: 90%;
+    max-width: 60rem;
+}
+
+form {
+    box-sizing: border-box;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    background-color: hsl(0, 0%, 100%);
+    border: 4px solid hsl(0, 0%, 90%);
+}
+
+label {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1.8;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 10px;
+}
+
+input {
+    border: 2px solid #333;
+    background-color: white;
+    border-radius: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    font: 1.25rem / 1.5 ;
+    display: block;
+    box-sizing: border-box;
+    width: 80%;
+    padding: 0.5rem 0.75rem;
+    height: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input[type="submit"],
+input[type="button"] {
+    display: block;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    height: 40px;
+    margin-top: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    background-color: #f0ba65;
+    color: rgba(0, 0, 0, 0.9);
+    border:none;
+    font-weight: bolder;
+}
+
+label {
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    max-width: 100%;
+    display:block;
+}

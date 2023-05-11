@@ -1,0 +1,14 @@
+  nav {
+    background-color: black;
+  }
+
+  /* mobile styles first */
+  .logo {
+    max-width: 6rem;
+  }
+
+.home{
+  padding: 2rem;
+  text-decoration: none;
+  color: white;
+}

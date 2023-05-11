@@ -1,0 +1,19 @@
+.preview{
+    display: flex;
+    border: black solid 1px;
+    flex-direction: column;
+    color: black;
+    text-decoration: none;
+    margin:1rem;
+    align-items:center ;
+}
+.preview:hover{
+    text-decoration: none;
+}
+
+.cars,.boats,.airplanes,.trucks{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+}
+

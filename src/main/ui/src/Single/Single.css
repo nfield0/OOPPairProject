@@ -1,0 +1,12 @@
+.general{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    width: 100vw;
+    justify-items: center;
+    font-size: 2rem;
+}
+
+.general img{
+    width: 100%;
+}

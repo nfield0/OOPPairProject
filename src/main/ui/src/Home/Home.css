@@ -1,0 +1,10 @@
+.banner{
+    width: 110vw;
+    margin: -10vh 0 0 -5vw;
+    filter: blur(10px);
+}
+
+.bannerContainer{
+    height: 80vh;
+    overflow: hidden;
+}

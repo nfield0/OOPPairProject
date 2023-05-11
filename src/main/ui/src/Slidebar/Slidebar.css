@@ -1,0 +1,89 @@
+@import url("https://use.typekit.net/swa0fjs.css");
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.icons_bar {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: .8em;
+}
+
+.bm-item {
+    padding-top: .5rem;
+}
+
+.bx {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+}
+
+.menu-item {
+    text-decoration: none;
+    font-style: normal;
+    color: white;
+
+}
+
+.menu-item:link {
+    text-decoration: none;
+}
+
+.bm-burger-button {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    right: 36px;
+    top: 36px;
+}
+
+.bm-burger-bars {
+    background: white;
+}
+
+.bm-cross-button {
+    height: 25px;
+    width: 25px;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
+
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+}
+
+.bm-menu {
+    font-size: 1.5em;
+}
+
+.bm-item-list {
+    color: #b8b7ad;
+    padding: 0 .8em 0 .8em;
+}
+
+.bm-item {
+    display: inline-block;
+}
+
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.5;
+}
+
+.login_menu_item svg {
+    transform: scale(125%);
+}
+
+
