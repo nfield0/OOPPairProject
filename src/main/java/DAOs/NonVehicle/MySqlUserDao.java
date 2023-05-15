@@ -2,7 +2,6 @@ package DAOs.NonVehicle;
 
 import DAOs.MySqlDao;
 import DAOs.NonVehicle.Interfaces.UserDaoInterface;
-import DTOs.Boat;
 import DTOs.User;
 import Exceptions.DaoException;
 
@@ -38,6 +37,31 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
         }
 
 
+    }
+    public User insertUser(User u) throws DaoException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = this.getConnection();
+
+            String query = "INSERT INTO USERS VALUES (?,?,?,?,?)";
+
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.setString(2, u.getName());
+            ps.setString(3, u.getEmail());
+            ps.setString(4, u.getPassword());
+            ps.setInt(5, u.getAdmin());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("insertUser() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
+
+
+        return u;
     }
     public List<User> findAllUsers() throws DaoException
     {
