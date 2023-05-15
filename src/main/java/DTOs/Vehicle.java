@@ -33,6 +33,21 @@ public abstract class Vehicle {
         this.dealer = dealer;
         this.imgUrl = imgUrl;
     }
+    public Vehicle(int id,String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) {
+        this.id = id;
+        this.make = make;
+        this.model = model;
+        this.engine = engine;
+        this.registration = registration;
+        this.color = color;
+        this.weightInTonnes = weightInTonnes;
+        this.numPassengers = numPassengers;
+        this.mileage = mileage;
+        this.price = price;
+        this.fuelType = fuelType;
+        this.dealer = dealer;
+        this.imgUrl = imgUrl;
+    }
 
     public String getType() {
         return type;
