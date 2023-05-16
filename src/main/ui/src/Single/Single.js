@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+
 function Single() {
     let {type} = useParams();
     let {id} = useParams();
@@ -10,6 +11,7 @@ function Single() {
     const [vehicle, setVehicle] = useState([])
 
     async function getVehicle() {
+
         const vehicle = (await axios.post('http://localhost:8000/api/single/' + type + '/' + id)).data[0]
         setVehicle(vehicle)
     }

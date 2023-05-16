@@ -7,6 +7,8 @@ function Home() {
     const [vehicle, setVehicle] = useState([])
 
     async function getVehicle() {
+
+
         const vehicle = (await axios.post('http://localhost:8000/api/vehicles')).data
         setVehicle(vehicle)
     }

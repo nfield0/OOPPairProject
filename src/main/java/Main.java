@@ -1,15 +1,15 @@
-import DAOs.*;
-import DAOs.NonVehicle.MySqlDealerDao;
-import DAOs.NonVehicle.MySqlUserDao;
-import DAOs.Vehicles.*;
-import DAOs.NonVehicle.Interfaces.DealerDaoInterface;
-import DAOs.NonVehicle.Interfaces.UserDaoInterface;
-import DAOs.Vehicles.Interfaces.BoatDaoInterface;
-import DAOs.Vehicles.Interfaces.CarDaoInterface;
-import DAOs.Vehicles.Interfaces.PlaneDaoInterface;
-import DAOs.Vehicles.Interfaces.TruckDaoInterface;
-import DTOs.*;
-import Exceptions.DaoException;
+import spring.DAOs.*;
+import spring.DAOs.NonVehicle.MySqlDealerDao;
+import spring.DAOs.NonVehicle.MySqlUserDao;
+import spring.DAOs.Vehicles.*;
+import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
+import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
+import spring.DAOs.Vehicles.Interfaces.BoatDaoInterface;
+import spring.DAOs.Vehicles.Interfaces.CarDaoInterface;
+import spring.DAOs.Vehicles.Interfaces.PlaneDaoInterface;
+import spring.DAOs.Vehicles.Interfaces.TruckDaoInterface;
+import spring.DTOs.*;
+import spring.Exceptions.DaoException;
 
 import java.sql.SQLException;
 import java.util.List;

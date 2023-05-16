@@ -1,9 +1,11 @@
 package spring.controller;
 
-import DTOs.User;
-import Exceptions.DaoException;
+import org.springframework.stereotype.Repository;
+import spring.DAOs.NonVehicle.MySqlUserDao;
+import spring.DTOs.User;
+import spring.Exceptions.DaoException;
 import spring.links.UserLinks;
-import DAOs.NonVehicle.Interfaces.UserDaoInterface;
+import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/")
 public class UsersController {
-	
-	@Autowired
-	UserDaoInterface usersService;
+
+	UserDaoInterface userDaoInterface = new MySqlUserDao();
     @GetMapping("/hello")
     public String hello() {
         return "Hello, world!";
@@ -25,14 +26,29 @@ public class UsersController {
 	@GetMapping(path = UserLinks.LIST_USERS)
     public ResponseEntity<?> listUsers() throws DaoException {
         log.info("UsersController:  list users");
-        List<User> resource = usersService.findAllUsers();
+        List<User> resource = userDaoInterface.findAllUsers();
+        return ResponseEntity.ok(resource);
+    }
+    @GetMapping(path = UserLinks.FIND_USER_BY_ID)
+    public ResponseEntity<?> findUser(@RequestBody int id) throws DaoException {
+        log.info("UsersController:  find user");
+        User resource = userDaoInterface.findUserById(id);
         return ResponseEntity.ok(resource);
     }
 	
 	@PostMapping(path = UserLinks.ADD_USER)
 	public ResponseEntity<?> saveUser(@RequestBody User user) throws DaoException {
-        log.info("UsersController:  list users");
-        User resource = usersService.insertUser(user);
+        log.info("UsersController:  insert user");
+        User resource = userDaoInterface.insertUser(user);
         return ResponseEntity.ok(resource);
     }
+
+    @PostMapping(path = UserLinks.DELETE_USER)
+    public ResponseEntity<?> deleteUser(@RequestBody int id) throws DaoException {
+        log.info("UsersController:  delete user");
+        User resource = userDaoInterface.deleteById(id);
+        return ResponseEntity.ok(resource);
+    }
+
+
 }
