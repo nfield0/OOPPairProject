@@ -9,7 +9,7 @@ function Home() {
     async function getVehicle() {
 
 
-        const vehicle = (await axios.post('http://localhost:8000/api/vehicles')).data
+        const vehicle = (await axios.post('http://localhost:8080/api/vehicles')).data
         setVehicle(vehicle)
     }
 
@@ -18,6 +18,7 @@ function Home() {
     }, []);
 
     return (
+
         <>
             <div className="container">
 
