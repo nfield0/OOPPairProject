@@ -88,7 +88,7 @@ function Home() {
                 <div className="boats">
                     {boats.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/boats/" + a.id}>
+                            <a className="preview" href={"single/" + a.id}>
                                 <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -103,7 +103,7 @@ function Home() {
                 <div className="cars">
                     {cars.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/car/" + a.id}>
+                            <a className="preview" href={"single/" + a.id}>
                                 <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -119,7 +119,7 @@ function Home() {
                 <div className="airplanes">
                     {planes.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/airplane/" + a.id}>
+                            <a className="preview" href={"single/" + a.id}>
                                 <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -134,7 +134,7 @@ function Home() {
                 <div className="trucks">
                     {trucks.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/trucks/" + a.id}>
+                            <a className="preview" href={"single/" + a.id}>
                                 <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>

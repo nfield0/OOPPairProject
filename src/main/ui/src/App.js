@@ -7,6 +7,7 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import { useCookies } from 'react-cookie';
 import Single from "./Single/Single";
+import Profile from "./Profile/Profile";
 function App() {
 
     const [cookies, setCookie, removeCookie] = useCookies(['mycookie']);
@@ -26,6 +27,7 @@ function App() {
           <Route exact={true} path="/single/:id" element={<Single />} />
           <Route exact={true} path="/login" element={<Login />} />
           <Route exact={true} path="/register" element={<Register />} />
+          <Route exact={true} path="/profile" element={<Profile />} />
 
         <Route path="*" element={() => <p>Page Not Found</p>} />
       </Routes>

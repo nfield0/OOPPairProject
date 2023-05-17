@@ -10,12 +10,8 @@ function Single() {
     const [vehicle, setVehicle] = useState([])
     async function getVehicle() {
 
-        const all = (await axios.get('http://localhost:8080/api/vehicles')).data
-        all.forEach(function(elt){
-            if(elt.id==id){
-                setVehicle(elt)
-            }
-        })
+        const vehicle = (await axios.get('http://localhost:8080/api/vehicle/'+id)).data
+        setVehicle(vehicle)
     }
     console.log(vehicle)
     useEffect(() => {
