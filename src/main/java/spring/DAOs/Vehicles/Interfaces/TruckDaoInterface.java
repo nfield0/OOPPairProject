@@ -2,6 +2,7 @@ package spring.DAOs.Vehicles.Interfaces;
 
 import spring.DTOs.Dealer;
 import spring.DTOs.Truck;
+import spring.DTOs.Vehicle;
 import spring.Exceptions.DaoException;
 
 import java.util.List;
@@ -16,6 +17,5 @@ public interface TruckDaoInterface {
     public void deleteById(int id) throws DaoException;
 
 
-
-
+    public Truck findTruckById(int id) throws DaoException;
 }

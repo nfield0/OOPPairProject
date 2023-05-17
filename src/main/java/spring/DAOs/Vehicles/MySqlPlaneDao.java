@@ -4,6 +4,7 @@ import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import spring.DAOs.MySqlDao;
 import spring.DAOs.NonVehicle.MySqlDealerDao;
 import spring.DAOs.Vehicles.Interfaces.PlaneDaoInterface;
+import spring.DTOs.Car;
 import spring.DTOs.Dealer;
 import spring.DTOs.Plane;
 import spring.Exceptions.DaoException;
@@ -84,7 +85,32 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         insertPlane(p.getMake(),p.getModel(),p.getEngine(),p.getRegistration(),p.getColor(),p.getWeightInTonnes(),p.getNumPassengers(),p.getMileage(),p.getPrice(),p.getFuelType(),p.getDealer(),p.getImgUrl(),p.getNumEngines(),p.getRange(),p.getMax_speed_knots(),p.getSeating_capacity());
     }
 
+    public Plane findPlaneById(int id) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Plane v = null;
 
+        try {
+            conn = this.getConnection();
+
+            String query = "SELECT * FROM airplanes where vehicle_id = ?";
+
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                v = createVehicle(rs);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("findPlaneById() " + e.getMessage());
+        } finally {
+            errorHandling(rs,ps,conn);
+        }
+        return v;
+    }
     public void deleteById(int id) throws DaoException
     {
         MySqlDao dao = new MySqlDao();

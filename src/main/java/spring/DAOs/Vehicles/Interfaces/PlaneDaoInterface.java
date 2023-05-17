@@ -2,6 +2,7 @@ package spring.DAOs.Vehicles.Interfaces;
 
 import spring.DTOs.Dealer;
 import spring.DTOs.Plane;
+import spring.DTOs.Vehicle;
 import spring.Exceptions.DaoException;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface PlaneDaoInterface {
     public void insertPlane(Plane p) throws DaoException;
 
     public List<Plane> findAllPlanes() throws DaoException;
+    public Plane findPlaneById(int id) throws DaoException;
+
     public void deleteById(int id) throws DaoException;
 
 

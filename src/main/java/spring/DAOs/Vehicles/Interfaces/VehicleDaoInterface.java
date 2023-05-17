@@ -9,6 +9,7 @@ public interface VehicleDaoInterface {
 
 
     public List<Vehicle> findAllVehicles() throws DaoException;
+    public Vehicle findVehicleById(int id) throws DaoException;
 
     public Vehicle insertVehicle(Vehicle v) throws DaoException;
 

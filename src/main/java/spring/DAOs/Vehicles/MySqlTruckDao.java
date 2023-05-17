@@ -4,8 +4,10 @@ import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import spring.DAOs.MySqlDao;
 import spring.DAOs.NonVehicle.MySqlDealerDao;
 import spring.DAOs.Vehicles.Interfaces.TruckDaoInterface;
+import spring.DTOs.Car;
 import spring.DTOs.Dealer;
 import spring.DTOs.Truck;
+import spring.DTOs.Vehicle;
 import spring.Exceptions.DaoException;
 
 import java.sql.Connection;
@@ -85,6 +87,32 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
     {
         MySqlDao dao = new MySqlDao();
         dao.deleteById("trucks","vehicle_id",id);
+    }
+    public Truck findTruckById(int id) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Truck v = null;
+
+        try {
+            conn = this.getConnection();
+
+            String query = "SELECT * FROM trucks where vehicle_id = ?";
+
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                v = createVehicle(rs);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("findTruckById() " + e.getMessage());
+        } finally {
+            errorHandling(rs,ps,conn);
+        }
+        return v;
     }
     public Truck createVehicle(ResultSet rs) throws SQLException {
         DealerDaoInterface dealerDao = new MySqlDealerDao();
