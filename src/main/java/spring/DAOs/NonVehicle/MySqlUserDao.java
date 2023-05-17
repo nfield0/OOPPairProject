@@ -130,6 +130,41 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
         }
         return null;
     }
+    public User findUserByEmailAndPassword(String cEmail, String cPassword) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = this.getConnection();
+
+            String query = "SELECT * FROM users where email = ? and password = ?";
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1,cEmail);
+            ps.setString(2,cPassword);
+
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int uid = rs.getInt("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+                String password = rs.getString("password");
+                int admin = rs.getInt("admin");
+
+                return new User(uid,name,email,password,admin);
+            }
+
+        } catch (SQLException e) {
+            throw new DaoException("findUserById() " + e.getMessage());
+        } finally {
+            errorHandling(rs,ps,conn);
+        }
+        return null;
+
+
+    }
     public User deleteById(int id) throws DaoException
     {
         MySqlDao dao = new MySqlDao();
