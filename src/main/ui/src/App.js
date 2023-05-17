@@ -2,7 +2,6 @@ import { Route, Link, Routes } from "react-router-dom"
 import './App.css';
 import Home from "./Home/Home";
 import Vehicle from "./Vehicle/Vehicle";
-import About from "./About/About";
 import Slidebar from "./Slidebar/Slidebar";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
@@ -23,9 +22,8 @@ function App() {
 
       <Routes>
         <Route exact={true} path="/" element={<Home />} />
-          <Route exact={true} path="/about" element={<About />} />
           <Route exact={true} path="/vehicle" element={<Vehicle />} />
-          <Route exact={true} path="/single/:type/:id" element={<Single />} />
+          <Route exact={true} path="/single/:id" element={<Single />} />
           <Route exact={true} path="/login" element={<Login />} />
           <Route exact={true} path="/register" element={<Register />} />
 

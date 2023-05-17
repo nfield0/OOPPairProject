@@ -22,7 +22,7 @@ import java.util.List;
 public class VehicleController {
 
     VehicleDaoInterface daoInterface = new MySqlVehicleDao();
-    @PostMapping(path = UserLinks.LIST_VEHICLES)
+    @GetMapping(path = UserLinks.LIST_VEHICLES)
     public ResponseEntity<?> listVehicles() throws DaoException {
         log.info("VehiclesController:  list vehicles");
         List<Vehicle> resource = daoInterface.findAllVehicles();

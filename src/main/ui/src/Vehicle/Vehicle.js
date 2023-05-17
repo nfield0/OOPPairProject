@@ -11,7 +11,7 @@ function Home() {
     const [planes, setPlanes] = useState([])
 
     async function getVehicle() {
-        const vehicle = (await axios.post('http://localhost:8080/api/vehicles')).data
+        const vehicle = (await axios.get('http://localhost:8080/api/vehicles')).data
         setVehicle(vehicle)
         vehicle.forEach(function (elt) {
             if (elt.type == 'Car') {
@@ -88,8 +88,8 @@ function Home() {
                 <div className="boats">
                     {boats.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/boats/" + a.vehicle_id}>
-                                <img src={a.img_url} alt="test"/>
+                            <a className="preview" href={"single/boats/" + a.id}>
+                                <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
                                     <p></p>
@@ -103,8 +103,8 @@ function Home() {
                 <div className="cars">
                     {cars.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/car/" + a.vehicle_id}>
-                                <img src={a.img_url} alt="test"/>
+                            <a className="preview" href={"single/car/" + a.id}>
+                                <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
                                     <p></p>
@@ -119,8 +119,8 @@ function Home() {
                 <div className="airplanes">
                     {planes.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/airplane/" + a.vehicle_id}>
-                                <img src={a.img_url} alt="test"/>
+                            <a className="preview" href={"single/airplane/" + a.id}>
+                                <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
                                     <p></p>
@@ -134,8 +134,8 @@ function Home() {
                 <div className="trucks">
                     {trucks.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/trucks/" + a.vehicle_id}>
-                                <img src={a.img_url} alt="test"/>
+                            <a className="preview" href={"single/trucks/" + a.id}>
+                                <img src={a.imgUrl} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
                                     <p></p>
