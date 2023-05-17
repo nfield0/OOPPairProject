@@ -11,7 +11,7 @@ public interface PlaneDaoInterface {
 
     public void insertPlane(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines,int range, int max_speed_knots, int seating_capacity) throws DaoException;
     public void insertPlane(Plane p) throws DaoException;
-
+    public void updatePlane(int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines,int range, int max_speed_knots, int seating_capacity) throws DaoException;
     public List<Plane> findAllPlanes() throws DaoException;
     public Plane findPlaneById(int id) throws DaoException;
 

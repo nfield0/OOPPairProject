@@ -139,12 +139,12 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM users where email = ? and password = ?";
+            String query = "SELECT * FROM users where email = ? and password = ?;";
 
             ps = conn.prepareStatement(query);
             ps.setString(1,cEmail);
             ps.setString(2,cPassword);
-
+            System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()){
                 int uid = rs.getInt("id");

@@ -77,6 +77,47 @@ public class MySqlBoatDao extends MySqlDao implements BoatDaoInterface {
 
 
     }
+    public void updateBoat(int id,String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numberLifeBoats, int max_speed_knots) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = this.getConnection();
+
+            String query = """
+                    UPDATE boats
+                         SET make = ?,
+                             model = ?,
+                             engine = ?,
+                             registration = ?,
+                             color = ?,
+                             weight_tonnes = ?,
+                             number_passengers = ?,
+                             mileage = ?,
+                             price = ?,
+                             fuel_type = ?,
+                             dealer_id = ?,
+                             img_url = ?,
+                             number_lifeboats = ?,
+                             max_speed_knots = ?
+                         WHERE vehicle_id = ?;
+                    """;
+            ps = conn.prepareStatement(query);
+
+            setVehicle(ps,id,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+
+            ps.setInt(14, numberLifeBoats);
+            ps.setInt(15, max_speed_knots);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("updateBoat() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
+
+
+    }
     public void insertBoat(Boat b) throws DaoException
     {
         insertBoat(b.getMake(),b.getModel(),b.getEngine(),b.getRegistration(),b.getColor(),b.getWeightInTonnes(),b.getNumPassengers(),b.getMileage(),b.getPrice(),b.getFuelType(),b.getDealer(),b.getImgUrl(),b.getNumLifeBoats(),b.getMax_speed_knots());

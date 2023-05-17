@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
 
-    public void insertCar(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer,String imgUrl, int numDoors) throws DaoException {
+    public void insertCar(String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl, int numDoors) throws DaoException {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
@@ -31,24 +31,24 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
                     VALUES (LAST_INSERT_ID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?);
                     COMMIT;""";
             ps = conn.prepareStatement(query);
-            setVehicle(ps,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+            setVehicle(ps, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer, imgUrl);
             ps.setInt(13, numDoors);
 
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException("insertCar() " + e.getMessage());
         } finally {
-                errorHandlingNoResult(ps,conn);
+            errorHandlingNoResult(ps, conn);
         }
 
 
     }
-    public void insertCar(Car c) throws DaoException
-    {
-        insertCar(c.getMake(),c.getModel(),c.getEngine(),c.getRegistration(),c.getColor(),c.getWeightInTonnes(),c.getNumPassengers(),c.getMileage(),c.getPrice(),c.getFuelType(),c.getDealer(),c.getImgUrl(),c.getNumDoors());
+
+    public void insertCar(Car c) throws DaoException {
+        insertCar(c.getMake(), c.getModel(), c.getEngine(), c.getRegistration(), c.getColor(), c.getWeightInTonnes(), c.getNumPassengers(), c.getMileage(), c.getPrice(), c.getFuelType(), c.getDealer(), c.getImgUrl(), c.getNumDoors());
     }
-    public List<Car> findAllCars() throws DaoException
-    {
+
+    public List<Car> findAllCars() throws DaoException {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -62,18 +62,64 @@ public class MySqlCarDao extends MySqlDao implements CarDaoInterface {
             ps = conn.prepareStatement(query);
 
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
 
-                list.add( createVehicle(rs));
+                list.add(createVehicle(rs));
             }
         } catch (SQLException e) {
             throw new DaoException("findAllCars() " + e.getMessage());
         } finally {
-            errorHandling(rs,ps,conn);
+            errorHandling(rs, ps, conn);
         }
         return list;
 
     }
+
+    public void updateCar(int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl, int numDoors) throws DaoException
+    {
+    Connection conn = null;
+    PreparedStatement ps = null;
+        try
+
+    {
+        conn = this.getConnection();
+
+        String query = """
+                UPDATE cars
+                     SET make = ?,
+                         model = ?,
+                         engine = ?,
+                         registration = ?,
+                         color = ?,
+                         weight_tonnes = ?,
+                         number_passengers = ?,
+                         mileage = ?,
+                         price = ?,
+                         fuel_type = ?,
+                         dealer_id = ?,
+                         img_url = ?,
+                         number_doors = ?
+                     WHERE vehicle_id = ?;
+                """;
+        ps = conn.prepareStatement(query);
+
+        setVehicle(ps, id, make, model, engine, registration, color, weightInTonnes, numPassengers, mileage, price, fuelType, dealer, imgUrl);
+        ps.setInt(14, numDoors);
+
+
+        ps.executeUpdate();
+    } catch(
+    SQLException e)
+
+    {
+        throw new DaoException("updateBoat() " + e.getMessage());
+    } finally
+
+    {
+        errorHandlingNoResult(ps, conn);
+    }
+
+}
     public Car findCarById(int id) throws DaoException
     {
         Connection conn = null;

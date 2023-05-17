@@ -82,6 +82,51 @@ public class MySqlTruckDao extends MySqlDao implements TruckDaoInterface {
     {
         insertTruck(t.getMake(),t.getModel(),t.getEngine(),t.getRegistration(),t.getColor(),t.getWeightInTonnes(),t.getNumPassengers(),t.getMileage(),t.getPrice(),t.getFuelType(),t.getDealer(),t.getImgUrl(),t.getWeight_capacity());
     }
+    public void updateTruck(int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int weight_capacity) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try
+
+        {
+            conn = this.getConnection();
+
+            String query = """
+                    UPDATE trucks
+                         SET make = ?,
+                             model = ?,
+                             engine = ?,
+                             registration = ?,
+                             color = ?,
+                             weight_tonnes = ?,
+                             number_passengers = ?,
+                             mileage = ?,
+                             price = ?,
+                             fuel_type = ?,
+                             dealer_id = ?,
+                             img_url = ?,
+                             weight_capacity = ?                    
+                         WHERE vehicle_id = ?;
+                    """;
+            ps = conn.prepareStatement(query);
+
+            setVehicle(ps,id,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+
+            ps.setInt(14, weight_capacity);
+
+
+            ps.executeUpdate();
+        } catch(
+                SQLException e)
+
+        {
+            throw new DaoException("updateBoat() " + e.getMessage());
+        } finally
+
+        {
+            errorHandlingNoResult(ps, conn);
+        }
+    }
 
     public void deleteById(int id) throws DaoException
     {

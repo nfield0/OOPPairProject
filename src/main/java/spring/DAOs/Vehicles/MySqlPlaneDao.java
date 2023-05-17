@@ -111,6 +111,57 @@ public class MySqlPlaneDao extends MySqlDao implements PlaneDaoInterface {
         }
         return v;
     }
+    public void updatePlane(int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl,int numEngines,int range, int max_speed_knots, int seating_capacity) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try
+
+        {
+            conn = this.getConnection();
+
+            String query = """
+                    UPDATE airplanes
+                         SET make = ?,
+                             model = ?,
+                             engine = ?,
+                             registration = ?,
+                             color = ?,
+                             weight_tonnes = ?,
+                             number_passengers = ?,
+                             mileage = ?,
+                             price = ?,
+                             fuel_type = ?,
+                             dealer_id = ?,
+                             img_url = ?,
+                             engine_count = ?,
+                             flightRange = ?,
+                             max_speed_knots = ?,
+                             seating_capacity = ?
+                         WHERE vehicle_id = ?;
+                    """;
+            ps = conn.prepareStatement(query);
+
+            setVehicle(ps,id,make,model,engine,registration,color,weightInTonnes,numPassengers,mileage,price,fuelType,dealer,imgUrl);
+
+            ps.setInt(14, numEngines);
+            ps.setInt(15, range);
+            ps.setInt(16, max_speed_knots);
+            ps.setInt(17, seating_capacity);
+
+
+            ps.executeUpdate();
+        } catch(
+                SQLException e)
+
+        {
+            throw new DaoException("updateBoat() " + e.getMessage());
+        } finally
+
+        {
+            errorHandlingNoResult(ps, conn);
+        }
+    }
     public void deleteById(int id) throws DaoException
     {
         MySqlDao dao = new MySqlDao();
