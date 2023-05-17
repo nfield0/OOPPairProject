@@ -107,7 +107,7 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM users where user_id = ?";
+            String query = "SELECT * FROM users where id = ?";
 
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);

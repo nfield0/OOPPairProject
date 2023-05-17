@@ -4,10 +4,7 @@ import spring.DAOs.NonVehicle.MySqlUserDao;
 import spring.DAOs.Vehicles.*;
 import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
-import spring.DAOs.Vehicles.Interfaces.BoatDaoInterface;
-import spring.DAOs.Vehicles.Interfaces.CarDaoInterface;
-import spring.DAOs.Vehicles.Interfaces.PlaneDaoInterface;
-import spring.DAOs.Vehicles.Interfaces.TruckDaoInterface;
+import spring.DAOs.Vehicles.Interfaces.*;
 import spring.DTOs.*;
 import spring.Exceptions.DaoException;
 
@@ -61,6 +58,9 @@ public class Main {
         findAllPlanes();
 
 
+        findVehicleById(2);
+        findUserById(2);
+        findUserByEmailAndPassword("nathan@gmail.com","Password");
     }
 
 
@@ -69,7 +69,18 @@ public class Main {
         CarDaoInterface carDao = new MySqlCarDao();
         System.out.println(carDao.findCarById(id));
     }
-
+    private static void findVehicleById(int id) throws DaoException {
+        VehicleDaoInterface vDao = new MySqlVehicleDao();
+        System.out.println(vDao.findVehicleById(id));
+    }
+    private static void findUserById(int id) throws DaoException {
+        UserDaoInterface uDao = new MySqlUserDao();
+        System.out.println(uDao.findUserById(id));
+    }
+    private static void findUserByEmailAndPassword(String email, String password) throws DaoException {
+        UserDaoInterface uDao = new MySqlUserDao();
+        System.out.println(uDao.findUserByEmailAndPassword(email,password));
+    }
     private static void findAllTrucks() {
         TruckDaoInterface dao = new MySqlTruckDao();
         try

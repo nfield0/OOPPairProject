@@ -54,7 +54,7 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
             rs = ps.executeQuery();
             if (rs.next()){
 
-                if(rs.getString(1).equalsIgnoreCase("Boat"))
+                if(rs.getString(2).equalsIgnoreCase("Boat"))
                 {
                     query = "SELECT * FROM boats where vehicle_id = ?";
                     ps = conn.prepareStatement(query);
@@ -64,7 +64,7 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
                         return boatDao.findBoatById(id);
                     }
                 }
-                else if(rs.getString(1).equalsIgnoreCase("Car"))
+                else if(rs.getString(2).equalsIgnoreCase("Car"))
                 {
                     query = "SELECT * FROM cars where vehicle_id = ?";
                     ps = conn.prepareStatement(query);
@@ -74,7 +74,7 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
                         return carDao.findCarById(id);
                     }
                 }
-                else if(rs.getString(1).equalsIgnoreCase("Truck"))
+                else if(rs.getString(2).equalsIgnoreCase("Truck"))
                 {
                     query = "SELECT * FROM trucks where vehicle_id = ?";
                     ps = conn.prepareStatement(query);
@@ -84,7 +84,7 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
                         return truckDao.findTruckById(id);
                     }
                 }
-                else if(rs.getString(1).equalsIgnoreCase("Airplane"))
+                else if(rs.getString(2).equalsIgnoreCase("Airplane"))
                 {
                     query = "SELECT * FROM airplanes where vehicle_id = ?";
                     ps = conn.prepareStatement(query);
