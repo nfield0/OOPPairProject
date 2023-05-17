@@ -36,10 +36,15 @@ public class UsersController {
         return ResponseEntity.ok(resource);
     }
     @GetMapping(path = UserLinks.FIND_USER_BY_EMAIl_AND_PASSWORD)
-    public ResponseEntity<?> findUserByEmailPassword(@PathVariable String email, String password) throws DaoException {
+    public ResponseEntity<?> findUserByEmailPassword(@PathVariable String email,@PathVariable String password) throws DaoException {
         log.info("UsersController:  find user by email, password");
+
         User resource = userDaoInterface.findUserByEmailAndPassword(email, password);
-        return ResponseEntity.ok(resource);
+        if (resource != null) {
+            return ResponseEntity.ok(resource);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 	
 	@PostMapping(path = UserLinks.ADD_USER)
