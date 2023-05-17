@@ -5,12 +5,71 @@ import axios from "axios";
 function Home() {
 
     const [vehicle, setVehicle] = useState([])
+    const [cars, setCars] = useState([])
+    const [trucks, setTrucks] = useState([])
+    const [boats, setBoats] = useState([])
+    const [planes, setPlanes] = useState([])
 
     async function getVehicle() {
-
-
         const vehicle = (await axios.post('http://localhost:8080/api/vehicles')).data
         setVehicle(vehicle)
+        vehicle.forEach(function (elt) {
+            if (elt.type == 'Car') {
+                let test = 0
+                cars.forEach(function (item) {
+                    if (item.id == elt.id) {
+                        test = 1;
+                    }
+                })
+                if (test == 0) {
+                    const tmp = cars;
+                    tmp.push(elt)
+                    setCars(tmp);
+                }
+            }
+
+            if (elt.type == 'Truck') {
+                let test = 0
+                trucks.forEach(function (item) {
+                    if (item.id == elt.id) {
+                        test = 1;
+                    }
+                })
+                if (test == 0) {
+                    const tmp = trucks;
+                    tmp.push(elt)
+                    setTrucks(tmp);
+                }
+            }
+
+            if (elt.type == 'Boat') {
+                let test = 0
+                boats.forEach(function (item) {
+                    if (item.id == elt.id) {
+                        test = 1;
+                    }
+                })
+                if (test == 0) {
+                    const tmp = boats;
+                    tmp.push(elt)
+                    setBoats(tmp);
+                }
+            }
+            if (elt.type == 'Airplane') {
+                let test = 0
+                planes.forEach(function (item) {
+                    if (item.id == elt.id) {
+                        test = 1;
+                    }
+                })
+                if (test == 0) {
+                    const tmp = planes;
+                    tmp.push(elt)
+                    setPlanes(tmp);
+                }
+            }
+            console.log(boats)
+        })
     }
 
     useEffect(() => {
@@ -27,9 +86,9 @@ function Home() {
                 <h1>Boats</h1>
 
                 <div className="boats">
-                    {vehicle.boats?.[0]?.map(a =>
+                    {boats.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/boats/"+ a.vehicle_id}>
+                            <a className="preview" href={"single/boats/" + a.vehicle_id}>
                                 <img src={a.img_url} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -42,9 +101,9 @@ function Home() {
 
                 <h1>Cars</h1>
                 <div className="cars">
-                    {vehicle.cars?.[0]?.map(a =>
+                    {cars.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/car/"+ a.vehicle_id}>
+                            <a className="preview" href={"single/car/" + a.vehicle_id}>
                                 <img src={a.img_url} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -58,9 +117,9 @@ function Home() {
                 <h1>Planes</h1>
 
                 <div className="airplanes">
-                    {vehicle.airplanes?.[0]?.map(a =>
+                    {planes.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/airplane/"+ a.vehicle_id}>
+                            <a className="preview" href={"single/airplane/" + a.vehicle_id}>
                                 <img src={a.img_url} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
@@ -73,9 +132,9 @@ function Home() {
 
                 <h1>Trucks</h1>
                 <div className="trucks">
-                    {vehicle.trucks?.[0]?.map(a =>
+                    {trucks.map(a =>
                         <div className={vehicle}>
-                            <a className="preview" href={"single/trucks/"+ a.vehicle_id}>
+                            <a className="preview" href={"single/trucks/" + a.vehicle_id}>
                                 <img src={a.img_url} alt="test"/>
                                 <div className="infos">
                                     <h3>{a.make} - {a.model}</h3>
