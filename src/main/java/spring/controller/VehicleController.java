@@ -30,7 +30,7 @@ public class VehicleController {
     }
 
     @GetMapping(path = UserLinks.FIND_VEHICLE_BY_ID)
-    public ResponseEntity<?> findOneVehicle(@RequestBody int id) throws DaoException {
+    public ResponseEntity<?> findOneVehicle(@PathVariable int id) throws DaoException {
         log.info("VehiclesController:  find one vehicle");
         Vehicle resource = daoInterface.findVehicleById(id);
         return ResponseEntity.ok(resource);

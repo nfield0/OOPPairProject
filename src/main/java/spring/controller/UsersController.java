@@ -30,13 +30,13 @@ public class UsersController {
         return ResponseEntity.ok(resource);
     }
     @GetMapping(path = UserLinks.FIND_USER_BY_ID)
-    public ResponseEntity<?> findUser(@RequestBody int id) throws DaoException {
-        log.info("UsersController:  find user");
+    public ResponseEntity<?> findUserByIdPost(@PathVariable int id) throws DaoException {
+        log.info("UsersController: find user by ID using POST");
         User resource = userDaoInterface.findUserById(id);
         return ResponseEntity.ok(resource);
     }
     @GetMapping(path = UserLinks.FIND_USER_BY_EMAIl_AND_PASSWORD)
-    public ResponseEntity<?> findUserByEmailPassword(@RequestBody String email, String password) throws DaoException {
+    public ResponseEntity<?> findUserByEmailPassword(@PathVariable String email, String password) throws DaoException {
         log.info("UsersController:  find user by email, password");
         User resource = userDaoInterface.findUserByEmailAndPassword(email, password);
         return ResponseEntity.ok(resource);
@@ -49,12 +49,6 @@ public class UsersController {
         return ResponseEntity.ok(resource);
     }
 
-    @PostMapping(path = UserLinks.DELETE_USER)
-    public ResponseEntity<?> deleteUser(@RequestBody int id) throws DaoException {
-        log.info("UsersController:  delete user");
-        User resource = userDaoInterface.deleteById(id);
-        return ResponseEntity.ok(resource);
-    }
 
 
 }
