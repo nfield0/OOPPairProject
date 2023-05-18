@@ -7,7 +7,9 @@ function Home() {
     return (
         <>
             <div className="bannerContainer">
+
                 <img src={banner} alt="banner" className='banner'/>
+
             </div>
         </>
     );

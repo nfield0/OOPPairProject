@@ -48,10 +48,10 @@ public class VehicleController {
         Vehicle resource = daoInterface.insertVehicle(vehicle);
         return ResponseEntity.ok(resource);
     }
-    @PostMapping(path = UserLinks.DELETE_VEHICLE)
-    public ResponseEntity<?> deleteVehicle(@RequestBody Vehicle vehicle) throws DaoException {
+    @GetMapping(path = UserLinks.DELETE_VEHICLE)
+    public ResponseEntity<?> deleteVehicle(@PathVariable int id,@PathVariable String type) throws DaoException {
         log.info("VehiclesController:  delete vehicle");
-        Vehicle resource = daoInterface.deleteVehicle(vehicle.getId(), vehicle.getType());
+        Vehicle resource = daoInterface.deleteVehicle(id, type);
         return ResponseEntity.ok(resource);
     }
 

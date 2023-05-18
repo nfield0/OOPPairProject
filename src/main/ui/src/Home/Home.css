@@ -2,9 +2,17 @@
     width: 110vw;
     margin: -10vh 0 0 -5vw;
     filter: blur(10px);
+    position: marker;
 }
 
 .bannerContainer{
     height: 80vh;
     overflow: hidden;
+}
+
+.content{
+    font-size: 5rem;
+    color: black;
+    position: relative;
+    z-index: 99;
 }
