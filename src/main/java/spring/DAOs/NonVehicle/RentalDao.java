@@ -67,7 +67,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM RENTALS";
+            String query = "SELECT * FROM RENTAL";
             ps = conn.prepareStatement(query);
 
             rs = ps.executeQuery();
