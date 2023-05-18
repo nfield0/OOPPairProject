@@ -48,7 +48,7 @@ async function handleChange(id, type) {
 }
 
 async function handleUser(id) {
-    //await axios.get("http://localhost:8080/api/delVehicle/" + id);
+    await axios.get("http://localhost:8080/api/deluser/" + id);
     AdminData()
 }
 

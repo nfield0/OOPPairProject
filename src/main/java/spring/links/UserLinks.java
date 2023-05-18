@@ -9,7 +9,7 @@ public class UserLinks {
 	public static final String FIND_USER_BY_ID = "/user/{id}";
     public static final String FIND_USER_BY_EMAIl_AND_PASSWORD = "/user/{email}/{password}";
     public static final String ADD_USER = "/user/{name}/{email}/{password}";
-    public static final String DELETE_USER = "/user/{id}";
+    public static final String DELETE_USER = "/deluser/{id}";
 
 
 
