@@ -192,7 +192,7 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
     public User deleteById(int id) throws DaoException
     {
         MySqlDao dao = new MySqlDao();
-        dao.deleteById("users","vehicle_id",id);
+        dao.deleteById("users","id",id);
         return null;
     }
 }

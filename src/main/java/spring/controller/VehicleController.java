@@ -54,7 +54,12 @@ public class VehicleController {
         Vehicle resource = daoInterface.deleteVehicle(id, type);
         return ResponseEntity.ok(resource);
     }
-
+    @PostMapping(path = UserLinks.ADD_RENTAL)
+    public ResponseEntity<?> addRental(@PathVariable int uid,@PathVariable int vid,@PathVariable int did,@PathVariable int duration) throws DaoException {
+        log.info("VehiclesController:  add Rentals");
+        VehicleRental resource = rDaoInterface.insertRental(uid,vid,did,duration);
+        return ResponseEntity.ok(resource);
+    }
     @GetMapping(path = UserLinks.FIND_RENTALS_BY_VEHICLE_ID)
     public ResponseEntity<?> findRentalsByVehicleId(@PathVariable int id) throws DaoException {
         log.info("VehiclesController:  find Rentals vehicle");

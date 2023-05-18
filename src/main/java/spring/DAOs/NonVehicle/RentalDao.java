@@ -26,11 +26,12 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
     UserDaoInterface uDao = new MySqlUserDao();
     VehicleDaoInterface vDao = new MySqlVehicleDao();
     DealerDaoInterface dDao = new MySqlDealerDao();
-    public Boolean insertRental(int userId, int vehicleId, int dealerId,int durationDays) throws DaoException
+    public VehicleRental insertRental(int userId, int vehicleId, int dealerId,int durationDays) throws DaoException
     {
         Connection conn = null;
         PreparedStatement ps = null;
-        ResultSet rs = null;
+        int rs;
+        VehicleRental v = null;
         try {
             conn = this.getConnection();
 
@@ -44,8 +45,17 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
             ps.setInt(5, durationDays);
             ps.setDate(4, java.sql.Date.valueOf(LocalDate.now()));
 
-            ps.executeUpdate();
-            return true;
+            rs = ps.executeUpdate();
+
+            if(rs == 1) {
+                User u = uDao.findUserById(userId);
+                Vehicle j = vDao.findVehicleById(vehicleId);
+                Dealer d = dDao.findDealerById(dealerId);
+                v = new VehicleRental(u,j,d,durationDays);
+            }
+                return v;
+
+
         } catch (SQLException e) {
             throw new DaoException("insertUser() " + e.getMessage());
         } finally {

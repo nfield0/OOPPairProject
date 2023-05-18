@@ -31,6 +31,13 @@ public class VehicleRental {
         this.durationInDays = durationInDays;
         this.createdDateTime = LocalDateTime.now();
     }
+    public VehicleRental(User user, Vehicle vehicle, Dealer dealer, int durationInDays) {
+        this.user = user;
+        this.vehicle = vehicle;
+        this.dealer = dealer;
+        this.durationInDays = durationInDays;
+        this.createdDateTime = LocalDateTime.now();
+    }
 
     public int getRentalId() {
         return rentalId;
