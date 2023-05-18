@@ -151,28 +151,28 @@ START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Car');
 INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
-VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'',5);
+VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'default.jpg',5);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Boat');
 INSERT INTO boats (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url, number_lifeboats, max_speed_knots)
-VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 30000, 'Gasoline', 1, '', 1, 30);
+VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 30000, 'Gasoline', 1, 'default.jpg', 1, 30);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Airplane');
 INSERT INTO airplanes (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
-VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, '', 2, 3700, 470, 220);
+VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, 'default.jpg', 2, 3700, 470, 220);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Truck');
 INSERT INTO trucks (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,weight_capacity)
-VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, '', 80000);
+VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, 'default.jpg', 80000);
 COMMIT;
 
 
