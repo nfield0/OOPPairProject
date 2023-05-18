@@ -56,7 +56,7 @@ public class UsersController {
     @GetMapping(path = UserLinks.DELETE_USER)
     public ResponseEntity<?> deleteUser(@PathVariable int id) throws DaoException {
         log.info("UsersController:  insert user");
-        User resource = userDaoInterface.deleteById(id);
+        User resource = userDaoInterface.deleteUserById(id);
         return ResponseEntity.ok(resource);
     }
 

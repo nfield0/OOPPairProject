@@ -15,7 +15,7 @@ public interface UserDaoInterface {
     public User insertUser(User u) throws DaoException;
 
     public List<User> findAllUsers() throws DaoException;
-    public User deleteById(int id) throws DaoException;
+    public User deleteUserById(int id) throws DaoException;
     public User findUserById(int id) throws DaoException;
 
     public User findUserByEmailAndPassword(String cEmail, String cPassword) throws DaoException;
