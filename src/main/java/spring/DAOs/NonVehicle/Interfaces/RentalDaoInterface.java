@@ -7,15 +7,12 @@ import java.util.List;
 
 public interface RentalDaoInterface {
 
-    public void insertRental() throws DaoException;
+    public Boolean insertRental(int userId, int vehicleId, int dealerId,int durationDays) throws DaoException;
 
     public List<VehicleRental> findAllRentals() throws DaoException;
     public VehicleRental findRentalById(int id) throws DaoException;
 
     public void deleteById(int id) throws DaoException;
-
-
-
-
-
+    public List<VehicleRental> findRentalByVehicleId(int id) throws DaoException;
+    public List<VehicleRental> findRentalByUserId(int id) throws DaoException;
 }

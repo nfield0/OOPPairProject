@@ -80,6 +80,7 @@ public class MySqlDao  {
             conn = this.getConnection();
 
             String query = "START TRANSACTION;" +
+                    "DELETE FROM rentals WHERE " + idColumn + " = ?;" +
                     "DELETE FROM " + tableName +" WHERE " + idColumn + " = ?;" +
                     "DELETE FROM vehicles WHERE " + idColumn + " = ?;" +
                     "COMMIT;";

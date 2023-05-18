@@ -1,11 +1,14 @@
 package spring.controller;
 
 import org.springframework.stereotype.Repository;
+import spring.DAOs.NonVehicle.Interfaces.RentalDaoInterface;
 import spring.DAOs.NonVehicle.MySqlUserDao;
+import spring.DAOs.NonVehicle.RentalDao;
 import spring.DAOs.Vehicles.Interfaces.VehicleDaoInterface;
 import spring.DAOs.Vehicles.MySqlVehicleDao;
 import spring.DTOs.User;
 import spring.DTOs.Vehicle;
+import spring.DTOs.VehicleRental;
 import spring.Exceptions.DaoException;
 import spring.links.UserLinks;
 import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
@@ -22,6 +25,7 @@ import java.util.List;
 public class VehicleController {
 
     VehicleDaoInterface daoInterface = new MySqlVehicleDao();
+    RentalDaoInterface rDaoInterface = new RentalDao();
     @GetMapping(path = UserLinks.LIST_VEHICLES)
     public ResponseEntity<?> listVehicles() throws DaoException {
         log.info("VehiclesController:  list vehicles");
@@ -48,6 +52,19 @@ public class VehicleController {
     public ResponseEntity<?> deleteVehicle(@RequestBody Vehicle vehicle) throws DaoException {
         log.info("VehiclesController:  delete vehicle");
         Vehicle resource = daoInterface.deleteVehicle(vehicle.getId(), vehicle.getType());
+        return ResponseEntity.ok(resource);
+    }
+
+    @GetMapping(path = UserLinks.FIND_RENTALS_BY_VEHICLE_ID)
+    public ResponseEntity<?> findRentalsByVehicleId(@PathVariable int id) throws DaoException {
+        log.info("VehiclesController:  find Rentals vehicle");
+        List<VehicleRental> resource = rDaoInterface.findRentalByVehicleId(id);
+        return ResponseEntity.ok(resource);
+    }
+    @GetMapping(path = UserLinks.FIND_RENTALS_BY_USER_ID)
+    public ResponseEntity<?> findRentalsByUserId(@PathVariable int id) throws DaoException {
+        log.info("VehiclesController:  find Rentals vehicle");
+        List<VehicleRental> resource = rDaoInterface.findRentalByVehicleId(id);
         return ResponseEntity.ok(resource);
     }
 }
