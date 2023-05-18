@@ -108,7 +108,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM RENTALS WHERE vehicle_id = ?";
+            String query = "SELECT * FROM RENTAL WHERE vehicle_id = ?";
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);
 
@@ -149,7 +149,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM RENTALS WHERE user_id = ?";
+            String query = "SELECT * FROM RENTAL WHERE user_id = ?";
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);
 
@@ -192,7 +192,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "SELECT * FROM RENTALS WHERE id = ?";
+            String query = "SELECT * FROM RENTAL WHERE id = ?";
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);
 

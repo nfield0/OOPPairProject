@@ -80,13 +80,14 @@ public class MySqlDao  {
             conn = this.getConnection();
 
             String query = "START TRANSACTION;" +
-                    "DELETE FROM rentals WHERE " + idColumn + " = ?;" +
+                    "DELETE FROM rental WHERE " + idColumn + " = ?;" +
                     "DELETE FROM " + tableName +" WHERE " + idColumn + " = ?;" +
                     "DELETE FROM vehicles WHERE " + idColumn + " = ?;" +
                     "COMMIT;";
             ps = conn.prepareStatement(query);
             ps.setInt(1,id);
             ps.setInt(2,id);
+            ps.setInt(3,id);
 
             result = ps.executeUpdate();
             if(result != 0)

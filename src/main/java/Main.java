@@ -1,6 +1,8 @@
 import spring.DAOs.*;
+import spring.DAOs.NonVehicle.Interfaces.RentalDaoInterface;
 import spring.DAOs.NonVehicle.MySqlDealerDao;
 import spring.DAOs.NonVehicle.MySqlUserDao;
+import spring.DAOs.NonVehicle.RentalDao;
 import spring.DAOs.Vehicles.*;
 import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
@@ -61,6 +63,11 @@ public class Main {
         findVehicleById(2);
         findUserById(2);
         findUserByEmailAndPassword("nathan@gmail.com","Password");
+
+
+
+        //Rentals
+        findRentalByVehicleId(2);
     }
 
 
@@ -80,6 +87,10 @@ public class Main {
     private static void findUserByEmailAndPassword(String email, String password) throws DaoException {
         UserDaoInterface uDao = new MySqlUserDao();
         System.out.println(uDao.findUserByEmailAndPassword(email,password));
+    }
+    private static void findRentalByVehicleId(int id) throws DaoException {
+        RentalDaoInterface uDao = new RentalDao();
+        System.out.println(uDao.findRentalByVehicleId(id));
     }
     private static void findAllTrucks() {
         TruckDaoInterface dao = new MySqlTruckDao();
