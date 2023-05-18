@@ -18,12 +18,11 @@ function Register(props) {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        await axios.post("http://localhost:8080/api/user/")
+        await axios.post("http://localhost:8080/api/user/"+ person.name+'/'+ person.email+'/'+ person.password)
             .then(response => {
-            console.log('working')
-                console.log(person)
             setCookie('email', person.email, {path: '/'});
             setCookie('password', person.password, {path: '/'});
+            navigate("/profile");
         })
             .catch(error => {
                 alert('error');
