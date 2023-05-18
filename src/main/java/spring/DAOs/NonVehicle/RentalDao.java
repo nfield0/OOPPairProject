@@ -26,7 +26,6 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
     UserDaoInterface uDao = new MySqlUserDao();
     VehicleDaoInterface vDao = new MySqlVehicleDao();
     DealerDaoInterface dDao = new MySqlDealerDao();
-
     public Boolean insertRental(int userId, int vehicleId, int dealerId,int durationDays) throws DaoException
     {
         Connection conn = null;
@@ -222,8 +221,6 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         }
         return rental;
     }
-
-    @Override
     public void deleteById(int id) throws DaoException {
         MySqlDao dao = new MySqlDao();
         dao.deleteById("rental","id",id);

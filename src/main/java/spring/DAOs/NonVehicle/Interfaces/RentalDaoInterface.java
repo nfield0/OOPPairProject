@@ -12,7 +12,8 @@ public interface RentalDaoInterface {
     public List<VehicleRental> findAllRentals() throws DaoException;
     public VehicleRental findRentalById(int id) throws DaoException;
 
-    public void deleteById(int id) throws DaoException;
     public List<VehicleRental> findRentalByVehicleId(int id) throws DaoException;
     public List<VehicleRental> findRentalByUserId(int id) throws DaoException;
+
+    public void deleteById(int id) throws DaoException;
 }

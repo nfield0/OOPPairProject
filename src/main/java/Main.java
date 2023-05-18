@@ -68,6 +68,7 @@ public class Main {
 
         //Rentals
         findRentalByVehicleId(2);
+        findRentalByUserId(1);
     }
 
 
@@ -91,6 +92,10 @@ public class Main {
     private static void findRentalByVehicleId(int id) throws DaoException {
         RentalDaoInterface uDao = new RentalDao();
         System.out.println(uDao.findRentalByVehicleId(id));
+    }
+    private static void findRentalByUserId(int id) throws DaoException {
+        RentalDaoInterface uDao = new RentalDao();
+        System.out.println(uDao.findRentalByUserId(id));
     }
     private static void findAllTrucks() {
         TruckDaoInterface dao = new MySqlTruckDao();
