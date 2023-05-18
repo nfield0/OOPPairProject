@@ -35,7 +35,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
         try {
             conn = this.getConnection();
 
-            String query = "INSERT INTO RENTALS VALUES (null,?,?,?,?,?,?)";
+            String query = "INSERT INTO RENTAL VALUES (null,?,?,?,?,?,?)";
 
             ps = conn.prepareStatement(query);
             ps.setInt(1, userId);
@@ -225,6 +225,7 @@ public class RentalDao extends MySqlDao implements RentalDaoInterface {
 
     @Override
     public void deleteById(int id) throws DaoException {
-
+        MySqlDao dao = new MySqlDao();
+        dao.deleteById("rental","id",id);
     }
 }
