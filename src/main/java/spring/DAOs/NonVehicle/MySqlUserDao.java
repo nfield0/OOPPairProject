@@ -38,6 +38,30 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
 
 
     }
+    public User insertUser(String name, String email, String password) throws DaoException
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = this.getConnection();
+
+            String query = "INSERT INTO USERS VALUES (null,?,?,?,?)";
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, name);
+            ps.setString(2, email);
+            ps.setString(3, password);
+            ps.setInt(4, 0);
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException("insertUser() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
+
+        return null;
+    }
     public User insertUser(User u) throws DaoException {
         Connection conn = null;
         PreparedStatement ps = null;

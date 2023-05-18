@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserDaoInterface {
 
     public void insertUser(int id, String name, String email, String password, int admin) throws DaoException;
+    public User insertUser(String name, String email, String password) throws DaoException;
     public User insertUser(User u) throws DaoException;
 
     public List<User> findAllUsers() throws DaoException;

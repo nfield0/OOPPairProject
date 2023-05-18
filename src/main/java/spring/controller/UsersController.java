@@ -48,9 +48,9 @@ public class UsersController {
     }
 	
 	@PostMapping(path = UserLinks.ADD_USER)
-	public ResponseEntity<?> saveUser(@RequestBody User user) throws DaoException {
+	public ResponseEntity<?> saveUser(@PathVariable String name,@PathVariable String email,@PathVariable String password) throws DaoException {
         log.info("UsersController:  insert user");
-        User resource = userDaoInterface.insertUser(user);
+        User resource = userDaoInterface.insertUser(name,email,password);
         return ResponseEntity.ok(resource);
     }
 
