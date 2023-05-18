@@ -70,7 +70,7 @@ public class VehicleController {
     @GetMapping(path = UserLinks.FIND_RENTALS_BY_USER_ID)
     public ResponseEntity<?> findRentalsByUserId(@PathVariable int id) throws DaoException {
         log.info("VehiclesController:  find Rentals vehicle");
-        List<VehicleRental> resource = rDaoInterface.findRentalByVehicleId(id);
+        List<VehicleRental> resource = rDaoInterface.findRentalByUserId(id);
         return ResponseEntity.ok(resource);
     }
 }
