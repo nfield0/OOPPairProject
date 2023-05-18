@@ -125,8 +125,6 @@ public class MySqlVehicleDao extends MySqlDao implements VehicleDaoInterface {
             PlaneDaoInterface planeDao = new MySqlPlaneDao();
             planeDao.insertPlane((Plane) v);
         }
-
-
         return v;
     }
 

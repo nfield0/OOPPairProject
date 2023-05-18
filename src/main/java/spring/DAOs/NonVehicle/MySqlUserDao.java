@@ -189,10 +189,38 @@ public class MySqlUserDao extends MySqlDao implements UserDaoInterface {
 
 
     }
-    public User deleteById(int id) throws DaoException
+    public User deleteUserById(int id) throws DaoException
     {
-        MySqlDao dao = new MySqlDao();
-        dao.deleteById("users","user_id",id);
+        Connection conn = null;
+        PreparedStatement ps = null;
+        int result;
+
+        try {
+            conn = this.getConnection();
+
+            String query = "START TRANSACTION;" +
+                    "DELETE FROM rental WHERE user_id = ?;" +
+                    "DELETE FROM users WHERE id = ?;" +
+                    "COMMIT;";
+            ps = conn.prepareStatement(query);
+            ps.setInt(1,id);
+            ps.setInt(2,id);
+
+            result = ps.executeUpdate();
+            if(result != 0)
+            {
+                System.out.println("Deleted item from users" );
+            }
+            else{
+                System.out.println("Item from Users does not exist");
+            }
+
+
+        } catch (SQLException e) {
+            throw new DaoException("deleteById() " + e.getMessage());
+        } finally {
+            errorHandlingNoResult(ps,conn);
+        }
         return null;
     }
 }
