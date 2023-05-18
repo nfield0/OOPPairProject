@@ -8,6 +8,7 @@ import spring.DAOs.NonVehicle.Interfaces.DealerDaoInterface;
 import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
 import spring.DAOs.Vehicles.Interfaces.*;
 import spring.DTOs.*;
+import spring.Exceptions.CorsConfiguration;
 import spring.Exceptions.DaoException;
 
 import java.sql.SQLException;
@@ -17,24 +18,98 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         System.out.println("Running");
 
+
+
+//  OOP Concepts
+//TODO   Inheritance is where a class can inherit properties and methods from another class. E.g Car inherits from Vehicle
+
+// TODO  Composition is another OOP concept where an object is composed of one
+//  or more other objects. E.g Rental composed of Vehicle, Dealer
+
+
+// TODO  Interfaces specifies a set of methods that a class must implement
+//        Abstract classes
+//        Polymorphism
+//        Method overriding
+//        Method overloading
+//        Encapsulation
+//        Dynamic method lookup
+
+
+
+
+
+
+
+
+
+
+/* TODO ChatGPT Uses:
+For Database Structure we used ChatGPT to design the structure of the application based on the Vehicle class and its children.
+For Some Complex queries we used ChatGPT to generate them
+Here is an example of one we generated:
+
+        START TRANSACTION;
+        INSERT INTO vehicles (type) VALUES
+        ('Car');
+        INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
+        VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'default.jpg',5);
+        COMMIT;
+
+When we started to use Java Spring we found an exception when posting from a different port. We had MySql on Port 8080, but
+also Java Spring running on port 3000. To find a solution to this, we asked ChatGPT.
+ChatGPT suggested to add a CorsException.
+
+Another issue we solved with ChatGPT was configuration.
+@ComponentScan(basePackages = "com.example.myapp.controllers")
+
+
+
+
+
+
+
+What is Spring?
+The Spring Framework (Spring) is an open-source application framework that provides infrastructure support for
+developing Java applications. One of the most popular Java Enterprise Edition (Java EE) frameworks, Spring helps
+developers create high performing applications using plain old Java objects (POJOs).
+*/
+
+
+
+
+
+
+
         MySqlDao mySqlDao = new MySqlDao();
         mySqlDao.getConnection();
 
-        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
+
 
         //Users
         //insertUser(0,"John","john@gmail.com","Password1",0);
         findAllUsers();
-
+        findUserById(2);
+        findUserByEmailAndPassword("nathan@gmail.com","Password");
 
         //Dealers
+        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
         //insertDealer("Mercedes Dundalk","Dundalk, Co.Louth","087-7741222");
         findAllDealers();
 
+        //Vehicles
+        //Cannot be instantiated
+        //Vehicle v = new Vehicle();
+        findVehicleById(2);
+
+
+
+
 
         //Cars
-        CarDaoInterface carDao = new MySqlCarDao();
         Car c = new Car(0,"Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5 );
+        CarDaoInterface carDao = new MySqlCarDao();
+
         //insertCar(c);
         findAllCars();
         System.out.println("Find one");
@@ -51,24 +126,24 @@ public class Main {
         Truck t = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
         //insertTruck(t);
         findAllTrucks();
+        Truck t2 = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
+
 
 
         //Planes
-
         Plane p = new Plane(0,"Boeing", "737 MAX", "CFM International", "N12345", "White", 79.0, 189, 4850, 120000000, "Jet A", dealer, "", 2, 3700, 470, 220);
         //insertPlane(p);
         findAllPlanes();
-
-
-        findVehicleById(2);
-        findUserById(2);
-        findUserByEmailAndPassword("nathan@gmail.com","Password");
 
 
 
         //Rentals
         findRentalByVehicleId(2);
         findRentalByUserId(1);
+
+
+
+
     }
 
 
@@ -80,6 +155,10 @@ public class Main {
     private static void findVehicleById(int id) throws DaoException {
         VehicleDaoInterface vDao = new MySqlVehicleDao();
         System.out.println(vDao.findVehicleById(id));
+    }
+    private static void insertVehicle(Vehicle v) throws DaoException {
+        VehicleDaoInterface vDao = new MySqlVehicleDao();
+        System.out.println(vDao.insertVehicle(v));
     }
     private static void findUserById(int id) throws DaoException {
         UserDaoInterface uDao = new MySqlUserDao();
