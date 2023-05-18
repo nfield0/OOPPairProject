@@ -61,6 +61,12 @@ public class VehicleController {
         List<VehicleRental> resource = rDaoInterface.findRentalByVehicleId(id);
         return ResponseEntity.ok(resource);
     }
+    @GetMapping(path = UserLinks.FIND_RENTALS)
+    public ResponseEntity<?> findRentals() throws DaoException {
+        log.info("VehiclesController:  find RentalS");
+        List<VehicleRental> resource = rDaoInterface.findAllRentals();
+        return ResponseEntity.ok(resource);
+    }
     @GetMapping(path = UserLinks.FIND_RENTALS_BY_USER_ID)
     public ResponseEntity<?> findRentalsByUserId(@PathVariable int id) throws DaoException {
         log.info("VehiclesController:  find Rentals vehicle");
