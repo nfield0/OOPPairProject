@@ -29,6 +29,7 @@ function Slidebar(props) {
                     </div>
                     <Link to="/"><a id="home" className="menu-item" href="/home">Home</a></Link>
                     <Link to="/vehicle" id="vehicle"><a className="menu-item" href="/vehicle">Vehicle</a></Link>
+                    <Link to="/dealers"><a id="home" className="menu-item" href="/dealers">Dealers</a></Link>
                     {loginbutton}
                 </Menu>
             </div>

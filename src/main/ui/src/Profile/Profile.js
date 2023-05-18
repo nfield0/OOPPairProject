@@ -41,98 +41,30 @@ function Login(props) {
 
     console.log(rentals)
 
-async function handleChange(id, type) {
-    await axios.get("http://localhost:8080/api/delVehicle/" + id + "/" + type + "s");
-    console.log('deleting' + id + type)
-    AdminData()
-}
 
-async function handleUser(id) {
-    await axios.get("http://localhost:8080/api/deluser/" + id);
-    AdminData()
-}
+    useEffect(() => {
+        getData().then(() => {
+            setLoading(false);
+        });
+    }, []);
 
-async function AdminData() {
-    try {
-        const usersResponse = await axios.get("http://localhost:8080/api/users");
-        setAllUsers(usersResponse.data);
 
-        const vehiclesResponse = await axios.get("http://localhost:8080/api/vehicles/");
-        setAllVehicle(vehiclesResponse.data);
-    } catch (error) {
-        console.error(error);
-    }
-}
+    return (
+        <>
+            <div className="profile">
+                <p> <strong> Name: </strong>{person.name}</p>
+                <p><strong> E-mail: </strong>{person.email}</p>
 
-useEffect(() => {
-    getData().then(() => {
-        setLoading(false);
-    });
-}, []);
-useEffect(() => {
-    if (person && person.admin === 1) {
-        AdminData();
-    }
-}, [person]); // Run this effect whenever 'person' changes
-if (loading) {
-    return <p>Loading...</p>;
-}
-
-return (
-    <>
-        <p>{person.email}</p>
-        {person && person.admin === 1 && (
-            <div>
-                <div className="admincontent">
-                    <table className="vehicleList">
-                        <tr>
-                            <th>id</th>
-                            <th>Model</th>
-                            <th>Make</th>
-                            <th>Color</th>
-                            <th>Type</th>
-                            <th>Delete</th>
-                        </tr>
-                        {allvehicle.map(a =>
-                            <tr className="each">
-                                <td>{a.id}</td>
-                                <td>{a.model}</td>
-                                <td>{a.make}</td>
-                                <td>{a.color}</td>
-                                <td>{a.type}</td>
-                                <td>
-                                    <button onClick={event => handleChange(a.id, a.type)}>❌</button>
-                                </td>
-                            </tr>
-                        )}
-                    </table>
-
-                    <table className="usersList">
-                        <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Delete</th>
-                        </tr>
-                        {allUsers.map(a =>
-                            <tr className="each">
-                                <td>{a.id}</td>
-                                <td>{a.name}</td>
-                                <td>{a.email}</td>
-                                <td>{a.password}</td>
-
-                                <td>
-                                    <button onClick={event => handleUser(a.id)}>❌</button>
-                                </td>
-                            </tr>
-                        )}
-                    </table>
-                </div>
             </div>
-        )}
-    </>
-);
+            {person && person.admin === 1 && (
+                <div className="admincontent">
+                    <button className={'panelBtn'} onClick={() => navigate('/adminvehicles')}>Admin Vehicle panel</button>
+                    <button className={'panelBtn'} onClick={() => navigate("/adminusers")}>Admin Users panel</button>
+
+                </div>
+            )}
+        </>
+    );
 }
 
 export default Login;

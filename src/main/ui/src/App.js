@@ -8,7 +8,10 @@ import Register from "./Register/Register";
 import { useCookies } from 'react-cookie';
 import Single from "./Single/Single";
 import Profile from "./Profile/Profile";
+import Dealers from "./Dealers/Dealers";
 import Logout from "./Logout/Logout";
+import AdminUsers from "./AdminUsers/AdminUsers";
+import AdminVehciles from "./AdminVehicles/AdminVehicles";
 function App() {
 
     const [cookies, setCookie, removeCookie] = useCookies(['mycookie']);
@@ -30,6 +33,10 @@ function App() {
           <Route exact={true} path="/register" element={<Register />} />
           <Route exact={true} path="/profile" element={<Profile />} />
           <Route exact={true} path="/logout" element={<Logout />} />
+          <Route exact={true} path="/dealers" element={<Dealers />} />
+
+          <Route exact={true} path="/adminusers" element={<AdminUsers />} />
+          <Route exact={true} path="/adminvehicles" element={<AdminVehciles />} />
 
         <Route path="*" element={() => <p>Page Not Found</p>} />
       </Routes>

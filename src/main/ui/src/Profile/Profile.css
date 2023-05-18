@@ -1,4 +1,106 @@
 .admincontent{
     display: flex;
     justify-content: space-evenly;
+    max-width: 500px;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    margin:5rem auto;
+    max-width: 450px;
+    justify-content: center;
+    align-items: center;
+    background: lightgray;
+    min-height: 150px;
+    vertical-align: center;
+    border-radius: 25px;
+    box-shadow: 4px 4px 1px 1px black;
+}
+
+.panelBtn {
+    position: relative;
+    background-color: rgb(12, 74, 87);
+    border-radius: 5px;
+    box-shadow: rgb(0, 0, 0) 0px 4px 0px 0px;
+    padding: 15px;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    width: 204px;
+    height: 100px;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    transition: all .3s ease-in-out;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.panelBtn::before {
+    content: "";
+    background-color: rgb(47, 35, 87);
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 700ms ease-in-out;
+    display: inline-block;
+}
+
+.panelBtn:hover::before {
+    width: 100%;
+}
+
+
+
+.backBtn {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin: 1rem 0 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: #167F92;
+    color: ghostwhite;
+}
+
+.backBtn span {
+    position: relative;
+    z-index: 10;
+    color: ghostwhite;
+    transition: color 0.4s;
+}
+
+
+.backBtn::before,
+.backBtn::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.backBtn::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+}
+
+.backBtn:hover::before {
+    transform: translate3d(100%, 0, 0);
 }

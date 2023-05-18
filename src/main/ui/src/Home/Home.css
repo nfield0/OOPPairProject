@@ -1,18 +1,41 @@
 .banner{
-    width: 110vw;
-    margin: -10vh 0 0 -5vw;
-    filter: blur(10px);
-    position: marker;
-}
-
-.bannerContainer{
     height: 80vh;
-    overflow: hidden;
+    background: url("./banner.jpg");
+    background-size: cover;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
 
 .content{
-    font-size: 5rem;
-    color: black;
-    position: relative;
-    z-index: 99;
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 1px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: #b8b7ad;
+    transition: .5s;
+}
+
+.content a{
+    text-decoration: none !important;
+}
+
+.content input[type="button"] {
+    box-shadow: 10px 10px 0px darkgrey !important;
+
+}
+
+.content input[type="button"]:hover {
+    box-shadow: 2.5px 2.5px 0px darkgrey !important;
+
 }
