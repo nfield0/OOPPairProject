@@ -16,25 +16,49 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        System.out.println("Running");
+        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
+
 
 
 
 //  OOP Concepts
 //TODO   Inheritance is where a class can inherit properties and methods from another class. E.g Car inherits from Vehicle
 
+
 // TODO  Composition is another OOP concept where an object is composed of one
 //  or more other objects. E.g Rental composed of Vehicle, Dealer
 
 
-// TODO  Interfaces specifies a set of methods that a class must implement
-//        Abstract classes
-//        Polymorphism
-//        Method overriding
-//        Method overloading
-//        Encapsulation
-//        Dynamic method lookup
+//TODO  Interfaces specifies a set of methods that a class must implement. E.g UserDaoInterface + UserDao
 
+
+
+//TODO  An Abstract classes is a class that cannot be instantiated.
+
+        //Vehicle v = new Vehicle();
+
+
+//TODO  Polymorphism is the ability of objects to take on different forms or types.
+        //MySqlVehicleDao.insertVehicle();
+
+
+//TODO  Method overriding is where a subclass implements a different
+//      version of a method already created in the superclass. E.g @Override toString()
+
+
+//TODO  Method overloading is where multiple methods can have the same name but different parameters. E.g User Constructor
+
+
+//TODO  Encapsulation is hiding the internal details of an object. E.g private fields
+
+
+//TODO  Dynamic method lookup is where the method implementation is
+// determined at runtime based on the actual type of the object
+
+        Car c = new Car(0,"Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5 );
+        Boat b = new Boat(0,"Bayliner", "2455 Ciera", "MerCruiser 5.7L", "FL2345", "White", 2.5, 6, 450, 30000, "Gasoline", dealer, "", 1, 30);
+        c.displayBasicInfo();
+        b.displayBasicInfo();
 
 
 
@@ -56,23 +80,20 @@ Here is an example of one we generated:
         VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'default.jpg',5);
         COMMIT;
 
+What is Java Spring?
+The Spring Framework (Spring) is an open-source application framework that provides infrastructure support for
+developing Java applications. One of the most popular Java Enterprise Edition (Java EE) frameworks, Spring helps
+developers create high performing applications using plain old Java objects (POJOs).
+
 When we started to use Java Spring we found an exception when posting from a different port. We had MySql on Port 8080, but
 also Java Spring running on port 3000. To find a solution to this, we asked ChatGPT.
 ChatGPT suggested to add a CorsException.
 
-Another issue we solved with ChatGPT was configuration.
+Another issue we solved with ChatGPT was structure.
 @ComponentScan(basePackages = "com.example.myapp.controllers")
 
 
 
-
-
-
-
-What is Spring?
-The Spring Framework (Spring) is an open-source application framework that provides infrastructure support for
-developing Java applications. One of the most popular Java Enterprise Edition (Java EE) frameworks, Spring helps
-developers create high performing applications using plain old Java objects (POJOs).
 */
 
 
@@ -81,65 +102,87 @@ developers create high performing applications using plain old Java objects (POJ
 
 
 
-        MySqlDao mySqlDao = new MySqlDao();
-        mySqlDao.getConnection();
-
-
-
-        //Users
-        //insertUser(0,"John","john@gmail.com","Password1",0);
-        findAllUsers();
-        findUserById(2);
-        findUserByEmailAndPassword("nathan@gmail.com","Password");
-
-        //Dealers
-        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
-        //insertDealer("Mercedes Dundalk","Dundalk, Co.Louth","087-7741222");
-        findAllDealers();
-
-        //Vehicles
-        //Cannot be instantiated
-        //Vehicle v = new Vehicle();
-        findVehicleById(2);
 
 
 
 
 
-        //Cars
-        Car c = new Car(0,"Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5 );
-        CarDaoInterface carDao = new MySqlCarDao();
-
-        //insertCar(c);
-        findAllCars();
-        System.out.println("Find one");
-        findCarById(1);
-        carDao.deleteById(1);
-
-        //Boats
-        Boat b = new Boat(0,"Bayliner", "2455 Ciera", "MerCruiser 5.7L", "FL2345", "White", 2.5, 6, 450, 30000, "Gasoline", dealer, "", 1, 30);
-        //insertBoat(b);
-        findAllBoats();
-
-
-        //Trucks
-        Truck t = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
-        //insertTruck(t);
-        findAllTrucks();
-        Truck t2 = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
 
 
 
-        //Planes
-        Plane p = new Plane(0,"Boeing", "737 MAX", "CFM International", "N12345", "White", 79.0, 189, 4850, 120000000, "Jet A", dealer, "", 2, 3700, 470, 220);
-        //insertPlane(p);
-        findAllPlanes();
 
 
 
-        //Rentals
-        findRentalByVehicleId(2);
-        findRentalByUserId(1);
+
+
+
+
+
+
+
+
+//        MySqlDao mySqlDao = new MySqlDao();
+//        mySqlDao.getConnection();
+//
+//
+//
+//        //Users
+//        //insertUser(0,"John","john@gmail.com","Password1",0);
+//        findAllUsers();
+//        findUserById(2);
+//        findUserByEmailAndPassword("nathan@gmail.com","Password");
+//        deleteUserById(2);
+//        findUserByEmailAndPassword("nathan@gmail.com","Password");
+//
+//
+//        //Dealers
+//        Dealer dealer = new Dealer(1,"Mercedes","Gaia","048104");
+//        //insertDealer("Mercedes Dundalk","Dundalk, Co.Louth","087-7741222");
+//        findAllDealers();
+//
+//        //Vehicles
+//        //Cannot be instantiated
+//        //Vehicle v = new Vehicle();
+//        findVehicleById(2);
+//
+//
+//
+//
+//
+//        //Cars
+//        Car c = new Car(0,"Volkswagen","Golf","1.6L tdi", "124lk00","White",2.5,5,10000,10000,"Diesel",dealer,"",5 );
+//        CarDaoInterface carDao = new MySqlCarDao();
+//
+//        //insertCar(c);
+//        findAllCars();
+//        System.out.println("Find one");
+//        findCarById(1);
+//        carDao.deleteById(1);
+//
+//        //Boats
+//        Boat b = new Boat(0,"Bayliner", "2455 Ciera", "MerCruiser 5.7L", "FL2345", "White", 2.5, 6, 450, 30000, "Gasoline", dealer, "", 1, 30);
+//        //insertBoat(b);
+//        findAllBoats();
+//
+//
+//        //Trucks
+//        Truck t = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
+//        //insertTruck(t);
+//        findAllTrucks();
+//        Truck t2 = new Truck(0,"Volvo", "VNL 760", "Volvo D13TC", "TX1234", "Blue", 18.1, 2, 500000, 120000, "Diesel", dealer, "", 80000);
+//
+//
+//
+//        //Planes
+//        Plane p = new Plane(0,"Boeing", "737 MAX", "CFM International", "N12345", "White", 79.0, 189, 4850, 120000000, "Jet A", dealer, "", 2, 3700, 470, 220);
+//        //insertPlane(p);
+//        findAllPlanes();
+//
+//
+//
+//        //Rentals
+//        findRentalByVehicleId(2);
+//        findRentalByUserId(1);
 
 
 
@@ -163,6 +206,10 @@ developers create high performing applications using plain old Java objects (POJ
     private static void findUserById(int id) throws DaoException {
         UserDaoInterface uDao = new MySqlUserDao();
         System.out.println(uDao.findUserById(id));
+    }
+    private static void deleteUserById(int id) throws DaoException {
+        UserDaoInterface uDao = new MySqlUserDao();
+        System.out.println(uDao.deleteUserById(id));
     }
     private static void findUserByEmailAndPassword(String email, String password) throws DaoException {
         UserDaoInterface uDao = new MySqlUserDao();

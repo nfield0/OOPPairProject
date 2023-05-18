@@ -17,7 +17,11 @@ private int numDoors;
     public void setNumDoors(int numDoors) {
         this.numDoors = numDoors;
     }
-
+    @Override
+    public void displayBasicInfo()
+    {
+        System.out.println("Car: " + getMake() + " " + getModel());
+    }
     @Override
     public String toString() {
         return super.toString() +

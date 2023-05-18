@@ -49,6 +49,7 @@ public abstract class Vehicle {
         this.imgUrl = imgUrl;
     }
 
+
     public String getType() {
         return type;
     }
@@ -161,6 +162,10 @@ public abstract class Vehicle {
         this.numPassengers = numPassengers;
     }
 
+    public void displayBasicInfo()
+    {
+        System.out.println("Vehicle: " + getMake() + " " + getModel());
+    }
     @Override
     public String toString() {
         return "Vehicle{" +

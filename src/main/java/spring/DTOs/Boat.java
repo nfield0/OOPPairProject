@@ -26,7 +26,11 @@ public class Boat extends Vehicle {
     public void setMax_speed_knots(int max_speed_knots) {
         this.max_speed_knots = max_speed_knots;
     }
-
+    @Override
+    public void displayBasicInfo()
+    {
+        System.out.println("Boat: " + getMake() + " " + getModel());
+    }
     @Override
     public String toString() {
         return super.toString() +

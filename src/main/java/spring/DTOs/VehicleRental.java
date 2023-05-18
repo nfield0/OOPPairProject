@@ -6,7 +6,9 @@ import java.util.Date;
 public class VehicleRental {
     private int rentalId;
     private User user;
+    //Composition has Vehicle
     private Vehicle vehicle;
+    //Composition has Dealer
     private Dealer dealer;
     private Date startDate;
     private int durationInDays;

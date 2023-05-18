@@ -6,7 +6,20 @@ public class User {
     private String email;
     private String password;
     private int admin;
-
+    public User() {
+        this.id = 0;
+        this.name = "Jeff";
+        this.email = "jeff@gmail.com";
+        this.password = "Secret";
+        this.admin = 0;
+    }
+    public User(String name, String email, String password) {
+        this.id = 0;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.admin = 0;
+    }
     public User(int id, String name, String email, String password, int admin) {
         this.id = id;
         this.name = name;

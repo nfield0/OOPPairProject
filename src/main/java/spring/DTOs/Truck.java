@@ -17,7 +17,11 @@ public class Truck extends Vehicle {
     public void setWeight_capacity(int weight_capacity) {
         this.weight_capacity = weight_capacity;
     }
-
+    @Override
+    public void displayBasicInfo()
+    {
+        System.out.println("Truck: " + getMake() + " " + getModel());
+    }
     @Override
     public String toString() {
         return super.toString() +

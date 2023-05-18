@@ -46,7 +46,11 @@ public class Plane extends Vehicle {
     public void setNumEngines(int numEngines) {
         this.numEngines = numEngines;
     }
-
+    @Override
+    public void displayBasicInfo()
+    {
+        System.out.println("Plane: " + getMake() + " " + getModel());
+    }
     @Override
     public String toString() {
         return super.toString() +
