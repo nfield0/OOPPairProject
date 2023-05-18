@@ -20,9 +20,9 @@ function Login(props) {
         await axios.get("http://localhost:8080/api/user/" + cookies.email + '/' + cookies.password)
             .then(response => {
             setPerson(response.data)
-        })
+            })
             .catch(error => {
-                alert('error');
+                navigate("/login");
             });
     }
     console.log(person)

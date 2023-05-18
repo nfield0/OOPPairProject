@@ -5,17 +5,14 @@ import {useCookies} from "react-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 function Login(props) {
     const [person,setPerson]=useState("");
     const [cookies, setCookie] = useCookies(['name']);
     const navigate = useNavigate();
-
     function handleChange(e, label){
         setPerson({...person,[label]: e.target.value })
 
     }
-
     async function handleSubmit(e){
         e.preventDefault()
         await axios.get("http://localhost:8080/api/user/"+person.email+'/'+person.password).then(response => {
@@ -23,13 +20,10 @@ function Login(props) {
             setCookie('email', person.email, { path: '/' });
             setCookie('password', person.password, { path: '/' });
             navigate("/profile");
-
         })
             .catch(error => {
                 alert('error');
             });
-
-
     }
     return (
         <form className="form" className="login-form" onSubmit={handleSubmit}>

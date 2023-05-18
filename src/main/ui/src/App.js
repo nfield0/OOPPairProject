@@ -8,6 +8,7 @@ import Register from "./Register/Register";
 import { useCookies } from 'react-cookie';
 import Single from "./Single/Single";
 import Profile from "./Profile/Profile";
+import Logout from "./Logout/Logout";
 function App() {
 
     const [cookies, setCookie, removeCookie] = useCookies(['mycookie']);
@@ -28,6 +29,7 @@ function App() {
           <Route exact={true} path="/login" element={<Login />} />
           <Route exact={true} path="/register" element={<Register />} />
           <Route exact={true} path="/profile" element={<Profile />} />
+          <Route exact={true} path="/logout" element={<Logout />} />
 
         <Route path="*" element={() => <p>Page Not Found</p>} />
       </Routes>

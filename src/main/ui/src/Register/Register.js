@@ -1,26 +1,52 @@
 import './Register.css'
-import { Link } from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+import {useState} from "react";
+import {useCookies} from "react-cookie";
+import axios from "axios";
 
 
 function Register(props) {
 
+    const [person, setPerson] = useState("");
+    const [cookies, setCookie] = useCookies(['name']);
+    const navigate = useNavigate();
+
+    function handleChange(e, label) {
+        setPerson({...person, [label]: e.target.value})
+
+    }
+
+    async function handleSubmit(e) {
+        e.preventDefault()
+        await axios.post("http://localhost:8080/api/user/")
+            .then(response => {
+            console.log('working')
+                console.log(person)
+            setCookie('email', person.email, {path: '/'});
+            setCookie('password', person.password, {path: '/'});
+        })
+            .catch(error => {
+                alert('error');
+            });
+    }
 
     return (
-        <form className="form" className="login-form" >
+        <form className="form" className="login-form" method="post" onSubmit={handleSubmit}>
             <div className="form-div">
-                <label for="name">Name: </label>
-                <input type="text" name="name" id="name" required ></input>
+                <label htmlFor="name">Name: </label>
+                <input type="text" name="name" id="name" required onChange={e => handleChange(e, "name")}></input>
             </div>
             <div className="form-div">
-                <label for="email">Email: </label>
-                <input type="email" name="email" id="email" required  ></input>
+                <label htmlFor="email">Email: </label>
+                <input type="email" name="email" id="email" required onChange={e => handleChange(e, "email")}></input>
             </div>
             <div className="form-div">
-                <label for="password">Password: </label>
-                <input type="password" name="password" id="password" required></input>
+                <label htmlFor="password">Password: </label>
+                <input type="password" name="password" id="password" required
+                       onChange={e => handleChange(e, "password")}></input>
             </div>
             <div className="form-div">
-                <input type="submit" value="Register" ></input>
+                <input type="submit" value="Register"></input>
             </div>
             <div className="form-div">
                 <Link to="/login"><input type="button" value="Already have an account ?"></input></Link>

@@ -14,7 +14,11 @@ function Slidebar(props) {
     if (cookies.email === undefined){
         loginbutton = <Link to="/login" id="login"><a className="menu-item" href="/login">Login</a></Link>;
     }else{
-        loginbutton = <Link to="/profile" id="profile"><a className="menu-item " href="/profile">Profile</a></Link>;
+        loginbutton = <div class="loged">
+            <Link to="/profile" id="profile"><a className="menu-item " href="/profile">Profile</a></Link> <br/>
+            <Link to="/logout" id="logout"><a className="menu-item " href="/logout">Logout</a></Link>
+        </div>
+        ;
     }
     return (
         <>
