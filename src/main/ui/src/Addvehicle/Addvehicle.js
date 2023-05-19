@@ -16,6 +16,7 @@ function Addvehicle() {
     if (!cookies.email && !cookies.password) {
         navigate('/login');
     }
+
     async function getData() {
         try {
             const response = await axios.get("http://localhost:8080/api/user/" + cookies.email + '/' + cookies.password);
@@ -24,19 +25,63 @@ function Addvehicle() {
             navigate("/login");
         }
     }
-    function handleChange(e, label) {
-        setPerson({...person, [label]: e.target.value})
 
+    function handleChange(e, label) {
+        setVehicle({...vehicle, [label]: e.target.value})
+        console.log(vehicle)
     }
+
     async function handleSubmit(e) {
         e.preventDefault()
-        await axios.post("http://localhost:8080/api/vehicle",vehicle)
-            .then(response => {
-            })
-            .catch(error => {
-                alert('error');
-            });
+        console.log(vehicle);
+        switch (vehicle.type) {
+            case "boats":
+                const boats = {vehicle}
+                await axios.post("http://localhost:8080/api/vehicle", boats)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        alert('error');
+                    });
+                break
+
+            case "cars":
+                const cars = {vehicle}
+                await axios.post("http://localhost:8080/api/vehicle", cars)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        alert('error');
+                    });
+                break
+
+            case "trucks":
+                const trucks = {vehicle}
+                await axios.post("http://localhost:8080/api/vehicle", trucks)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        alert('error');
+                    });
+                break
+
+            case "airplanes":
+                const airplanes = {vehicle}
+                await axios.post("http://localhost:8080/api/vehicle", airplanes)
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        alert('error');
+                    });
+                break
+        }
+
     }
+
     useEffect(() => {
         getData().then(() => {
             setLoading(false);
@@ -50,18 +95,20 @@ function Addvehicle() {
             {person && person.admin === 1 && (
                 <form className="form" className="login-form" method="post" onSubmit={handleSubmit}>
                     <select name="type" className="selectType" onChange={e => handleChange(e, "type")} required>
-                        <option value="car">car</option>
-                        <option value="truck">truck</option>
-                        <option value="boat">boat</option>
-                        <option value="airplane">car</option>
+                        <option value="cars">car</option>
+                        <option value="trucks">truck</option>
+                        <option value="boats">boat</option>
+                        <option value="airplanes">airplane</option>
                     </select>
                     <div className="form-div">
                         <label htmlFor="make">Make: </label>
-                        <input type="text" name="make" id="make" required onChange={e => handleChange(e, "make")}></input>
+                        <input type="text" name="make" id="make" required
+                               onChange={e => handleChange(e, "make")}></input>
                     </div>
                     <div className="form-div">
                         <label htmlFor="model">Model: </label>
-                        <input type="text" name="model" id="model" required onChange={e => handleChange(e, "model")}></input>
+                        <input type="text" name="model" id="model" required
+                               onChange={e => handleChange(e, "model")}></input>
                     </div>
                     <div className="form-div">
                         <label htmlFor="engine">Engine: </label>
@@ -113,7 +160,7 @@ function Addvehicle() {
 
                     <div className="form-div">
                         <label htmlFor="dealer_id">dealer_id: </label>
-                        <input type="number" name="dealer_id" id="dealer_id" required value="1"
+                        <input type="number" name="dealer_id" id="dealer_id" required
                                onChange={e => handleChange(e, "dealer_id")}></input>
                     </div>
 

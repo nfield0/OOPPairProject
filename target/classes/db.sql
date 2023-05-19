@@ -151,28 +151,28 @@ START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Car');
 INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
-VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'default.jpg',5);
+VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'https://di-uploads-pod11.dealerinspire.com/hondaofkirkland/uploads/2019/08/2019-Civic-Sedan-Rallye-Red.png',5);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Boat');
 INSERT INTO boats (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url, number_lifeboats, max_speed_knots)
-VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 30000, 'Gasoline', 1, 'default.jpg', 1, 30);
+VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 30000, 'Gasoline', 1, 'https://imgs.yachthub.com/2/9/1/5/4/1/0_4.jpg', 1, 30);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Airplane');
 INSERT INTO airplanes (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
-VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, 'default.jpg', 2, 3700, 470, 220);
+VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, 'https://www.smartwings.com/images/letadla/boeing-737-max-8/boeing-737-max-960.jpeg', 2, 3700, 470, 220);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Truck');
 INSERT INTO trucks (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,weight_capacity)
-VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, 'default.jpg', 80000);
+VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, 'https://vicimus-glovebox7.s3.us-east-2.amazonaws.com/photos/rgLubwKXttau/4V4NC9EH9LN254348/37850acea4d7341bb521d66c417506fe.jpg', 80000);
 COMMIT;
 
 
@@ -180,7 +180,9 @@ COMMIT;
 INSERT INTO rental (id, user_id, vehicle_id, dealer_id, start_date, duration_days, created_date)
 VALUES (1, 1, 1, 2,'2023-05-01', 7, '2023-05-01'),
        (2, 2, 2, 1,'2023-05-02', 5, '2023-05-02'),
-       (3, 1, 3, 3,'2023-05-03', 3, '2023-05-03');
+       (3, 2, 3, 3,'2023-05-03', 3, '2023-05-03'),
+       (4, 1, 2, 2,'2023-05-03', 3, '2023-05-04'),
+       (5, 1, 3, 3,'2023-05-03', 3, '2023-05-05');
 
 
 
