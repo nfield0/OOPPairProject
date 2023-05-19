@@ -1,19 +1,24 @@
-.preview{
+.preview {
     display: flex;
     border: black solid 1px;
     flex-direction: column;
     color: black;
     text-decoration: none;
-    margin:1rem;
-    align-items:center ;
+    margin: 1rem;
+    align-items: center;
 }
-.preview:hover{
+
+.preview:hover {
     text-decoration: none;
 }
 
-.cars,.boats,.airplanes,.trucks{
+.cars, .boats, .airplanes, .trucks {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+}
+
+.results img{
+    max-width: 100%;
 }
 
