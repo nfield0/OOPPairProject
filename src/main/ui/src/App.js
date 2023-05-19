@@ -12,6 +12,7 @@ import Dealers from "./Dealers/Dealers";
 import Logout from "./Logout/Logout";
 import AdminUsers from "./AdminUsers/AdminUsers";
 import AdminVehciles from "./AdminVehicles/AdminVehicles";
+import Addvehicle from "./Addvehicle/Addvehicle";
 function App() {
 
     const [cookies, setCookie, removeCookie] = useCookies(['mycookie']);
@@ -21,7 +22,7 @@ function App() {
        <Slidebar cookies={cookies}/>
 
       <nav>
-        <Link to="/" className='home'><p>Car Website</p></Link>
+        <Link to="/" className='home'><p className={"homeLink"}>Homepage</p></Link>
       </nav>
 
 
@@ -37,6 +38,7 @@ function App() {
 
           <Route exact={true} path="/adminusers" element={<AdminUsers />} />
           <Route exact={true} path="/adminvehicles" element={<AdminVehciles />} />
+          <Route exact={true} path="/addvehicle" element={<Addvehicle />} />
 
         <Route path="*" element={() => <p>Page Not Found</p>} />
       </Routes>

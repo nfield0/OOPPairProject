@@ -54,7 +54,8 @@ input[type="password"] {
 }
 
 input[type="submit"],
-input[type="button"] {
+input[type="button"]
+ {
     display: block;
     font-weight: bold;
     padding: 0.75rem 1rem;
@@ -79,4 +80,22 @@ label {
     text-align: center;
     max-width: 100%;
     display:block;
+}
+
+.form-div{
+    display: grid;
+    place-items: center;
+    margin-top:1rem;
+}
+
+.form-div input[type="number"],
+.form-div input[type="url"]{
+    max-width: 200px;
+}
+
+.selectType{
+    padding: .5rem 2rem;
+    font-size: 1rem;
+    margin : auto;
+    display: block;
 }

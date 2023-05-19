@@ -1,13 +1,14 @@
 .admincontent{
     display: flex;
     justify-content: space-evenly;
-    max-width: 500px;
+    max-width: 1000px;
+    margin:1rem auto;
 }
 
 .profile{
     display: flex;
     flex-direction: column;
-    margin:5rem auto;
+    margin:2rem auto;
     max-width: 450px;
     justify-content: center;
     align-items: center;
@@ -20,7 +21,7 @@
 
 .panelBtn {
     position: relative;
-    background-color: rgb(12, 74, 87);
+    background-color: #167F92;
     border-radius: 5px;
     box-shadow: rgb(0, 0, 0) 0px 4px 0px 0px;
     padding: 15px;
@@ -38,7 +39,7 @@
 
 .panelBtn::before {
     content: "";
-    background-color: rgb(47, 35, 87);
+    background-color: #0b434b;
     width: 0;
     height: 100%;
     position: absolute;
