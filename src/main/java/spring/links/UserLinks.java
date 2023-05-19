@@ -15,6 +15,10 @@ public class UserLinks {
 
     public static final String LIST_VEHICLES = "/vehicles";
     public static final String ADD_VEHICLE = "/vehicle";
+    public static final String ADD_CAR = "/vehicle/car";
+    public static final String ADD_BOAT = "/vehicle/boat";
+    public static final String ADD_TRUCK = "/vehicle/truck";
+    public static final String ADD_AIRPLANE = "/vehicle/airplane";
 
     public static final String FIND_VEHICLE_BY_ID = "/vehicle/{id}";
     public static final String DELETE_VEHICLE = "/delVehicle/{id}/{type}";

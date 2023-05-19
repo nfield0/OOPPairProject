@@ -8,10 +8,7 @@ import spring.DAOs.NonVehicle.MySqlUserDao;
 import spring.DAOs.NonVehicle.RentalDao;
 import spring.DAOs.Vehicles.Interfaces.VehicleDaoInterface;
 import spring.DAOs.Vehicles.MySqlVehicleDao;
-import spring.DTOs.Dealer;
-import spring.DTOs.User;
-import spring.DTOs.Vehicle;
-import spring.DTOs.VehicleRental;
+import spring.DTOs.*;
 import spring.Exceptions.DaoException;
 import spring.links.UserLinks;
 import spring.DAOs.NonVehicle.Interfaces.UserDaoInterface;
@@ -47,9 +44,32 @@ public class VehicleController {
 
 
 
-    @PostMapping(path = UserLinks.ADD_VEHICLE)
-    public ResponseEntity<?> saveVehicle(@RequestBody Vehicle vehicle) throws DaoException {
-        log.info("VehiclesController:  add vehicle");
+
+    @PostMapping(path = UserLinks.ADD_CAR)
+    public ResponseEntity<?> saveCar(@RequestBody Car vehicle) throws DaoException {
+        log.info("VehiclesController: add car");
+        log.info(vehicle.toString());
+        Vehicle resource = daoInterface.insertVehicle(vehicle);
+        return ResponseEntity.ok(resource);
+    }
+    @PostMapping(path = UserLinks.ADD_BOAT)
+    public ResponseEntity<?> saveBoat(@RequestBody Boat vehicle) throws DaoException {
+        log.info("VehiclesController: add boat");
+        log.info(vehicle.toString());
+        Vehicle resource = daoInterface.insertVehicle(vehicle);
+        return ResponseEntity.ok(resource);
+    }
+    @PostMapping(path = UserLinks.ADD_TRUCK)
+    public ResponseEntity<?> saveTruck(@RequestBody Truck vehicle) throws DaoException {
+        log.info("VehiclesController: add truck");
+        log.info(vehicle.toString());
+        Vehicle resource = daoInterface.insertVehicle(vehicle);
+        return ResponseEntity.ok(resource);
+    }
+    @PostMapping(path = UserLinks.ADD_AIRPLANE)
+    public ResponseEntity<?> savePlane(@RequestBody Plane vehicle) throws DaoException {
+        log.info("VehiclesController: add car");
+        log.info(vehicle.toString());
         Vehicle resource = daoInterface.insertVehicle(vehicle);
         return ResponseEntity.ok(resource);
     }

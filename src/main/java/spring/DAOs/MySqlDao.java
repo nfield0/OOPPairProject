@@ -52,7 +52,14 @@ public class MySqlDao  {
         ps.setInt(8, mileage);
         ps.setInt(9, price);
         ps.setString(10, fuelType);
-        ps.setInt(11, dealer.getId());
+        if(dealer != null)
+        {
+            ps.setInt(11, dealer.getId());
+        }
+        else
+        {
+            ps.setInt(11,1);
+        }
         ps.setString(12, imgUrl);
     }
     public void setVehicle(PreparedStatement ps, int id, String make, String model, String engine, String registration, String color, double weightInTonnes, int numPassengers, int mileage, int price, String fuelType, Dealer dealer, String imgUrl) throws SQLException {

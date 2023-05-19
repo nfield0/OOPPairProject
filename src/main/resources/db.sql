@@ -151,29 +151,66 @@ START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Car');
 INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
-VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 15000, 'Gasoline', 1,'https://di-uploads-pod11.dealerinspire.com/hondaofkirkland/uploads/2019/08/2019-Civic-Sedan-Rallye-Red.png',5);
+VALUES (LAST_INSERT_ID(), 'Honda', 'Civic', '2.0L Inline 4', 'AB-1234-CD', 'Red', '1500kg', 5, 25000, 100, 'Gasoline', 1,'https://di-uploads-pod11.dealerinspire.com/hondaofkirkland/uploads/2019/08/2019-Civic-Sedan-Rallye-Red.png',5);
+COMMIT;
+
+START TRANSACTION;
+INSERT INTO vehicles (type) VALUES
+('Car');
+INSERT INTO cars (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id, img_url,number_doors)
+VALUES (LAST_INSERT_ID(), 'Toyota', 'Camry', '2.5L Inline 4', 'XY-5678-ZW', 'Silver', '1600kg', 5, 30000, 60, 'Gasoline', 2,'https://file.kelleybluebookimages.com/kbb/base/evox/CP/51209/2023-Toyota-Camry-front_51209_032_2400x1800_1H1_nologo.png',4);
+COMMIT;
+
+
+START TRANSACTION;
+INSERT INTO vehicles (type) VALUES
+('Boat');
+INSERT INTO boats (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url, number_lifeboats, max_speed_knots)
+VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 900, 'Gasoline', 1, 'https://imgs.yachthub.com/2/9/1/5/4/1/0_4.jpg', 1, 30);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Boat');
 INSERT INTO boats (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url, number_lifeboats, max_speed_knots)
-VALUES (LAST_INSERT_ID(), 'Bayliner', '2455 Ciera', 'MerCruiser 5.7L', 'FL2345', 'White', 2.5, 6, 450, 30000, 'Gasoline', 1, 'https://imgs.yachthub.com/2/9/1/5/4/1/0_4.jpg', 1, 30);
+VALUES (LAST_INSERT_ID(), 'Sea Ray', 'Sundancer 320', 'MerCruiser 6.2L', 'FL5678', 'White', 3.0, 8, 200, 500, 'Gasoline', 2, 'https://images.boatsgroup.com/images/1/20/82/8202082_20220421070942553_1_XLARGE.jpg', 2, 35);
+COMMIT;
+
+
+
+START TRANSACTION;
+INSERT INTO vehicles (type) VALUES
+('Airplane');
+INSERT INTO airplanes (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
+VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 2000, 'Jet A', 1, 'https://www.smartwings.com/images/letadla/boeing-737-max-8/boeing-737-max-960.jpeg', 2, 3700, 470, 220);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Airplane');
 INSERT INTO airplanes (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,engine_count,flightRange,max_speed_knots,seating_capacity)
-VALUES (LAST_INSERT_ID(), 'Boeing', '737 MAX', 'CFM International LEAP-1B', 'N12345', 'White', 79.0, 189, 4850, 120000000, 'Jet A', 1, 'https://www.smartwings.com/images/letadla/boeing-737-max-8/boeing-737-max-960.jpeg', 2, 3700, 470, 220);
+VALUES (LAST_INSERT_ID(), 'Cessna', '172 Skyhawk', 'Lycoming O-360', 'N98765', 'Blue', 1.1, 4, 1500, 500, 'AvGas', 3, 'https://upload.wikimedia.org/wikipedia/commons/0/06/Cessna_172_Skyhawk_%28D-EDDX%29.jpg',2,3700,470,210);
+COMMIT;
+
+
+
+START TRANSACTION;
+INSERT INTO vehicles (type) VALUES
+('Truck');
+INSERT INTO trucks (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,weight_capacity)
+VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 600, 'Diesel', 1, 'https://vicimus-glovebox7.s3.us-east-2.amazonaws.com/photos/rgLubwKXttau/4V4NC9EH9LN254348/37850acea4d7341bb521d66c417506fe.jpg', 80000);
 COMMIT;
 
 START TRANSACTION;
 INSERT INTO vehicles (type) VALUES
 ('Truck');
 INSERT INTO trucks (vehicle_id, make, model, engine, registration, color, weight_tonnes, number_passengers, mileage, price, fuel_type, dealer_id,img_url,weight_capacity)
-VALUES (LAST_INSERT_ID(), 'Volvo', 'VNL 760', 'Volvo D13TC', 'TX1234', 'Blue', 18.1, 2, 500000, 120000, 'Diesel', 1, 'https://vicimus-glovebox7.s3.us-east-2.amazonaws.com/photos/rgLubwKXttau/4V4NC9EH9LN254348/37850acea4d7341bb521d66c417506fe.jpg', 80000);
+VALUES (LAST_INSERT_ID(), 'Ford', 'F-150', '3.5L V6 EcoBoost', 'TX5678', 'Red', 2.5, 5, 100000, 350, 'Gasoline', 2, 'https://www.thedrive.com/uploads/2022/05/09/Lightning-Review-Hero-3.jpg?auto=webp', 3000);
 COMMIT;
+
+
+
+
 
 
 
